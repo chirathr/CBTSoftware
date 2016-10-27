@@ -1,4 +1,4 @@
-<project name="2048" default="compile" basedir=".">
+<project name="CBTSoftware" default="compile" basedir=".">
   
  <description>
  A sample build file for this project
