@@ -33,6 +33,22 @@ class Question {
         return mcqAnswer;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public boolean getTrueOrFalseAnswer() {
+        return trueOrFalseAnswer;
+    }
+
+    public String getFillInTheBlankAnswer() {
+        return fillInTheBlankAnswer;
+    }
+
     Question(int qno, String q, int nofc, String options[], int mcqAnswer) {
         // mcq(single answer)
         this.type = 1;
@@ -42,14 +58,14 @@ class Question {
         this.options = options;
         this.mcqAnswer= mcqAnswer;
     }
-    Question(int qno, String q, int nofc, String options[], int mcqAnswer[]) {
+    Question(int qno, String q, int nofc, String options[], int mcqAnswers[]) {
         //mcq(multiple answers)
         this.type = 2;
         this.questionNumber = qno;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
-        this.mcqAnswer = mcqAnswer;
+        this.mcqAnswers = mcqAnswers;
     }
     Question(int qno, String q, boolean torF) {
         // True or False
