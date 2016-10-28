@@ -9,8 +9,43 @@ import java.io.*;
 class Teacher {
 	String username, email, password;
 	int id;
-	
-	Teacher(String username, String email, String password) {
+
+	//Getters and setters
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    Teacher(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -34,18 +69,4 @@ class Teacher {
 		
 	}
 	*/
-	
-	int getId() {
-		return id;
-	}
-	
-	String getUsername() {
-		return username;
-	}
-	String getEmail() {
-		return email;
-	}
-	String getPassword() {
-		return password;
-	}
 }
