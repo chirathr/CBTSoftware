@@ -12,7 +12,47 @@ class Question {
     String[] options = new String[5];
     boolean trueOrFalseAnswer;
     String fillInTheBlankAnswer;
-    
+
+    //setters
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
+    public void setNumberOfChoices(int numberOfChoices) {
+        this.numberOfChoices = numberOfChoices;
+    }
+
+    public void setMcqAnswer(int[] mcqAnswer) {
+        this.mcqAnswer = mcqAnswer;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setOptions(String[] options) {
+        this.options = options;
+    }
+
+    public void setTrueOrFalseAnswer(boolean trueOrFalseAnswer) {
+        this.trueOrFalseAnswer = trueOrFalseAnswer;
+    }
+
+    public void setFillInTheBlankAnswer(String fillInTheBlankAnswer) {
+        this.fillInTheBlankAnswer = fillInTheBlankAnswer;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    // Getters
+
+    public boolean isTrueOrFalseAnswer() {
+        return trueOrFalseAnswer;
+    }
+
     public int getQuestionNumber() {
         return questionNumber;
     }
@@ -41,13 +81,11 @@ class Question {
         return options;
     }
 
-    public boolean getTrueOrFalseAnswer() {
-        return trueOrFalseAnswer;
-    }
-
     public String getFillInTheBlankAnswer() {
         return fillInTheBlankAnswer;
     }
+
+    // Constructors
 
     Question(int qno, String q, int nofc, String options[], int mcqAnswer) {
         // mcq(single answer)
@@ -81,6 +119,8 @@ class Question {
         this.question = q;
         this.fillInTheBlankAnswer = ans;
     }
+
+
     
     
 }
