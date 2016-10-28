@@ -9,6 +9,17 @@ class Login {
     Scanner scanner = new Scanner(System.in);
     int ch;
 
+    // setters and getters
+
+    public int getCh() {
+        return ch;
+    }
+
+    public void setCh(int ch) {
+        this.ch = ch;
+    }
+
+
     // constructor
 
     Main(int choice){
