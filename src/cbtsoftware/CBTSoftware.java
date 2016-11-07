@@ -21,7 +21,13 @@ public class CBTSoftware {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PSQLConnect psql = new PSQLConnect();
+        
+    }  
+}
+
+/*
+PSQL connection example
+PSQLConnect psql = new PSQLConnect();
         List<List<String>> result = null;
         psql.connectPSQL();
         try {
@@ -30,6 +36,4 @@ public class CBTSoftware {
             Logger.getLogger(CBTSoftware.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(result);
-    }
-    
-}
+*/

@@ -5,10 +5,16 @@
  */
 package Register;
 
+import java.util.*;
+import java.io.*;
+import Dbconnection.PSQLConnect;
+
 /**
  *
  * @author chirath
  */
 public class Register {
-    
+    public void register() {
+        
+    }
 }
