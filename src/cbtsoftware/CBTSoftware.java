@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package cbtsoftware;
+import java.util.*;
+import java.io.*;
+import Dbconnection.PSQLConnect;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,7 +21,13 @@ public class CBTSoftware {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        PSQLConnect psql = new PSQLConnect();
+        psql.connectPSQL();
+        try {
+            psql.runPSQLQuery("Select * from users;");
+        } catch (SQLException ex) {
+            Logger.getLogger(CBTSoftware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
