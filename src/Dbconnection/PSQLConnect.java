@@ -5,11 +5,14 @@
  */
 package Dbconnection;
 
+import java.sql.Array;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,7 +59,7 @@ public class PSQLConnect {
 	}
     }
     
-    public void runPSQLQuery(String query) throws SQLException {
+    public  List<List<String>> runPSQLQuery(String query) throws SQLException {
         Statement st = connection.createStatement();
         ResultSet rs = null;
         try {
@@ -64,18 +67,20 @@ public class PSQLConnect {
         } catch (SQLException ex) {
             Logger.getLogger(PSQLConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            while (rs.next()) {
-                System.out.print("Column 1 returned ");
-                System.out.println(rs.getString(1));
-                System.out.print("Column 2 returned ");
-                System.out.println(rs.getString(2));
+        List<List<String>> result = new ArrayList<>();  // List of list, one per row
+        int numcols = rs.getMetaData().getColumnCount();
+        while (rs.next()) {
+            List<String> row = new ArrayList<>(numcols); // new list per row
+            int i = 1;
+            while (i <= numcols) {  // don't skip the last column, use <=
+                row.add(rs.getString(i++));
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PSQLConnect.class.getName()).log(Level.SEVERE, null, ex);
+            result.add(row); // add it to the result
         }
+        
         rs.close();
         st.close();
+        return result;
     }
     
 }

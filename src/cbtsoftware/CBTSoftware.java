@@ -22,12 +22,14 @@ public class CBTSoftware {
      */
     public static void main(String[] args) {
         PSQLConnect psql = new PSQLConnect();
+        List<List<String>> result = null;
         psql.connectPSQL();
         try {
-            psql.runPSQLQuery("Select * from users;");
+            result = psql.runPSQLQuery("Select * from users;");
         } catch (SQLException ex) {
             Logger.getLogger(CBTSoftware.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(result);
     }
     
 }
