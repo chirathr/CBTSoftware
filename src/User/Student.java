@@ -15,8 +15,14 @@ import java.util.logging.Logger;
 public class Student extends Person {
     int semster;
 
-    public Student(int id, String name, String username, String password, String email, int semister) {
+    public Student(int id, String name, String username, String password, String email, int semster) {
         super(id, name, username, password, email);
+        this.semster = semster;
+    }
+
+
+    public Student() {
+        super();
     }
 
     public int getSemster() {
@@ -42,6 +48,33 @@ public class Student extends Person {
         if(result.size() == 1) {
             System.out.println("Login successful");
         }
+    }
+    public boolean save() {
+        List<List<String>> result = null;
+        PSQLConnect psql = new PSQLConnect();
+        psql.connectPSQL();
+        try {
+            String query = "select * from students where username = '" + username + "';";
+            result = psql.runPSQLQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(result.size() == 1) {
+            System.out.println("username already exists!");
+            return false;
+        }
+        try {
+            String query = "select * from students where email = '" + email + "';";
+            result = psql.runPSQLQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(result.size() == 1) {
+            System.out.println("email already exists!");
+            return false;
+        }
+        
+        return true;
     }
     
 }
