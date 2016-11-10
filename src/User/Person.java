@@ -22,6 +22,10 @@ public class Person {
         this.password = password;
         this.email = email;
     }
+    
+    public Person() {
+        
+    }
 
     //getter and setters
     
