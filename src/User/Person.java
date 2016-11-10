@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package User;
+import Dbconnection.PSQLConnect;
 
 /**
  *
@@ -68,10 +69,6 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-    
-    public void login() {
-        
-    }
+    } 
     
 }
