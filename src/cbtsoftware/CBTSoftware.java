@@ -6,7 +6,7 @@
 package cbtsoftware;
 import java.util.*;
 import java.io.*;
-import Dbconnection.PSQLConnect;
+import User.Student;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,8 @@ public class CBTSoftware {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        Student s = new Student();
+        s.login("chirath", "1234");
     }  
 }
 
