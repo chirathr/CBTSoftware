@@ -40,7 +40,7 @@ public class Student extends Person {
         PSQLConnect psql = new PSQLConnect();
         psql.connectPSQL();
         try {
-            String query = "select * from students where username = '" + username + "' and password = '" + password + "';";
+            String query = "select * from student where username = '" + username + "' and password = '" + password + "';";
             result = psql.runPSQLQuery(query);
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class Student extends Person {
         PSQLConnect psql = new PSQLConnect();
         psql.connectPSQL();
         try {
-            String query = "select * from students where username = '" + username + "';";
+            String query = "select * from student where username = '" + username + "';";
             result = psql.runPSQLQuery(query);
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
