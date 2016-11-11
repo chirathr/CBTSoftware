@@ -55,7 +55,6 @@ public class PSQLConnect {
 	}
 
 	if (connection != null) {
-            System.out.println("Connection sucessful!");
 	} else {
             System.out.println("Failed to make connection to Database!");
 	}
