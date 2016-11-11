@@ -22,12 +22,6 @@ public class Register {
         /*get student data : String name, String username, 
         String password, String email, int semster */
         
-        //Student student = new Student(); pass all value here in order as parameter
-            
-        //if(!student.save()) 
-        //call studentRegister() again
-        
-        // make same function for 
         Scanner s = new Scanner(System.in);
 	String name="";
 	String uname="";
@@ -37,16 +31,16 @@ public class Register {
 	int semester;
         int flag=0;
         
-        System.out.println("Enter Your Name : ");
+        System.out.print("Enter Your Name : ");
         name = s.nextLine();
         
-        System.out.println("Enter your username:-");
+        System.out.print("Enter your username:-");
         username = s.nextLine();
         
-        System.out.println("Enter a password : ");
+        System.out.print("Enter a password : ");
         password = s.nextLine();
         
-        System.out.println("Enter your email address");
+        System.out.print("Enter your email address");
         flag=0;
         while(flag == 0) {
             email = s.nextLine();
@@ -58,7 +52,7 @@ public class Register {
                 System.out.println("Not a valid email address, Enter again");
         }
                 
-        System.out.println("Enter your semester");
+        System.out.print("Enter your semester : ");
         semester = s.nextInt();
         
         Student student = new Student();
@@ -69,6 +63,49 @@ public class Register {
         }
     }
     
+    public void teacherRegister() {
+        Scanner s = new Scanner(System.in);
+	String name="";
+	String uname="";
+        String username;
+	String password="";
+	String email="";
+        String department="";
+        
+        int flag=0;
+        
+        System.out.print("Enter Your Name : ");
+        name = s.nextLine();
+        
+        System.out.print("Enter your username:-");
+        username = s.nextLine();
+        
+        System.out.print("Enter a password : ");
+        password = s.nextLine();
+        
+        System.out.print("Enter your email address : ");
+        flag=0;
+        while(flag == 0) {
+            email = s.nextLine();
+            Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+            Matcher mat = pattern.matcher(email);
+            if(mat.matches())
+                flag=1;
+            else
+                System.out.println("Not a valid email address, Enter again");
+        }
+                
+        System.out.print("Enter your department : ");
+        department = s.nextLine();
+        
+//        Teacher teacher = new Teacher();
+//        if(!teacher.save(name, username, password, email, department)) {
+//            System.out.println();
+//            System.out.println("Enter again !!");
+//            this.teacherRegister();
+//        }
+    }
+    
     public void register() {
         scanner = new Scanner(System.in);
         
@@ -77,8 +114,12 @@ public class Register {
         if(type == 1) {
             this.studentRegister();
         }
+        else if(type == 2) {
+            this.teacherRegister();
+        }
         else {
-            //get teacher data
+            System.out.println("Wrong option, Enter again !");
+            this.register();
         }
     }
 }
