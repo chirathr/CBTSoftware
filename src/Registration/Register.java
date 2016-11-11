@@ -44,6 +44,7 @@ public class Register {
         username = s.nextLine();
         
         System.out.println("Enter a password : ");
+        password = s.nextLine();
         
         System.out.println("Enter your email address");
         flag=0;
@@ -51,10 +52,8 @@ public class Register {
             email = s.nextLine();
             Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
             Matcher mat = pattern.matcher(email);
-            if(mat.matches()){
-                System.out.println("Valid email address");
+            if(mat.matches())
                 flag=1;
-            }
             else
                 System.out.println("Not a valid email address, Enter again");
         }
@@ -64,7 +63,8 @@ public class Register {
         
         Student student = new Student();
         if(!student.save(name, username, password, email, semester)) {
-            System.out.println("Enter again");
+            System.out.println();
+            System.out.println("Enter again !!");
             this.studentRegister();
         }
     }
