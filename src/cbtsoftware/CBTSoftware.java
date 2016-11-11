@@ -23,6 +23,7 @@ public class CBTSoftware {
     public static void main(String[] args) {
         Student s = new Student();
         s.login("chirath", "1234");
+        s.save("Chirath", "abc", "1234", "abc@gmail.com", 4);
     }  
 }
 

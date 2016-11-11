@@ -64,27 +64,30 @@ public class Student extends Person {
         
         List<List<String>> result = null;
         PSQLConnect psql = new PSQLConnect();
-        psql.connectPSQL();
         try {
             String query = "select * from student where username = '" 
                     + username + "';";
+            psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             if(result.size() == 1) {
                 System.out.println("username already exists!");
                 return false;
             }
             query = "select * from student where email = '" + email + "';";
+            psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             if(result.size() == 1) {
                 System.out.println("email already exists!");
                 return false;
             }
             query = "select max(id) from student;";
+            psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             int nextId = Integer.parseInt(result.get(0).get(0)) + 1;
             query = "insert into student values(" + nextId + ", '" + 
                     name + "', '" + username + "', '" + password +
                     "', '" + email + "', " + semster + ");";
+            psql.connectPSQL();
             psql.insertQuery(query);
             System.out.println("User created successfully!");
         } catch (SQLException ex) {
