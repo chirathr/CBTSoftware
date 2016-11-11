@@ -85,6 +85,7 @@ public class Student extends Person {
             query = "insert into student values(" + nextId + ", '" + 
                     name + "', '" + username + "', '" + password +
                     "', '" + email + "', " + semster + ");";
+            psql.insertQuery(query);
             System.out.println("User created successfully!");
         } catch (SQLException ex) {
             Logger.getLogger(
