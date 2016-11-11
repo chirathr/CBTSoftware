@@ -15,8 +15,7 @@ public class Person {
     String name, username, password, email;
     boolean isLoggedIn;
 
-    public Person(int id, String name, String username, String password, String email) {
-        this.id = id;
+    public Person(String name, String username, String password, String email) {
         this.name = name;
         this.username = username;
         this.password = password;

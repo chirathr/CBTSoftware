@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 public class Student extends Person {
     int semster;
 
-    public Student(int id, String name, String username, 
+    public Student(String name, String username, 
             String password, String email, int semster) {
-        super(id, name, username, password, email);
+        super(name, username, password, email);
         this.semster = semster;
     }
 
