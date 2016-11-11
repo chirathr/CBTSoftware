@@ -8,6 +8,7 @@ package Dbconnection;
 import java.sql.Array;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
  */
 public class PSQLConnect {
     Connection connection = null;
+    PreparedStatement pst = null;
     public void connectPSQL() {
         try {
 
@@ -80,7 +82,31 @@ public class PSQLConnect {
         
         rs.close();
         st.close();
+        connection.close();
         return result;
     }
     
+    public void insertQuery(String query) {
+        try {
+            pst = connection.prepareStatement(query);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PSQLConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger lgr = Logger.getLogger(PSQLConnect.class.getName());
+                lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            }
+        }  
+    }
 }
