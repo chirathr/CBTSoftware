@@ -31,6 +31,8 @@ public class Register {
 	int semester;
         int flag=0;
         
+        System.out.println("Student registration");
+        
         System.out.print("Enter Your Name : ");
         name = s.nextLine();
         
@@ -73,6 +75,8 @@ public class Register {
         String department="";
         
         int flag=0;
+        
+        System.out.println("Teacher registration");
         
         System.out.print("Enter Your Name : ");
         name = s.nextLine();
