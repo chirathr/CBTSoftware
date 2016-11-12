@@ -3,12 +3,14 @@ package cbtsoftware;
 import Registration.Registration;
 import User.Student;
 import User.Teacher;
+import java.util.Scanner;
 
 /**
  *
  * @author chirath
  */
 public class CBTSoftware {
+    Scanner scanner = null;
     Student student = null;
     Teacher teacher = null;
     Registration registration = null;
@@ -25,9 +27,33 @@ public class CBTSoftware {
         else 
             this.logInUser();
     }
+    
+    CBTSoftware() {
+        scanner = new Scanner(System.in);
+    }
+    
+    public void doStudent() {
+        System.out.println("----------------Student Menu--------------");
+        System.out.println("1 for student");
+        System.out.println("2 for teacher");
+        System.out.println("3 to go back");
+        int choice = scanner.nextInt();
+    }
+    
+    public void doTeacher() {
+        System.out.println("----------------Staff Menu--------------");
+        System.out.println("1 for student");
+        System.out.println("2 for teacher");
+        System.out.println("3 to go back");
+        int choice = scanner.nextInt();
+    }
 
     public static void main(String[] args) {
         CBTSoftware cbt = new CBTSoftware();
         cbt.logInUser();
+        if(cbt.userType == 'S')
+            cbt.doStudent();
+        else 
+            cbt.doTeacher();
     }  
 }
