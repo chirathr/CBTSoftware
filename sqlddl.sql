@@ -19,3 +19,17 @@ create table Teacher(
 );
 
 insert into teacher values(1, 'Chirath R', 'chirath', '1234', 'chirath.02@gmail.com', 'CSE');
+
+create table question(
+    id numeric(10) primary key,
+    type numeric(2),
+    numerOfChoices numeric(2),
+    mcqAnswer1 numeric(2),
+    mcqAnswer2 numeric(2),
+    mcqAnswer3 numeric(2),
+    mcqAnswer4 numeric(2),
+    mcqAnswer5 numeric(2),
+    question varchar(2000),
+    trueOrFalse numeric(1),
+    fillInTheBlankAnswer varchar(200)
+);
