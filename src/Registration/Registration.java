@@ -134,4 +134,34 @@ public class Registration {
         }
         return 1;
     }
+    
+    public int studentLogin() {
+        System.out.print("Username : ");
+        String username = scanner.nextLine();
+        System.out.print("Password : ");
+        String password = scanner.nextLine();
+        student.login(username, password);
+    }   
+    
+    public int login() {
+        scanner = new Scanner(System.in);
+        System.out.println("----------------Login--------------");
+        System.out.println("1 for student");
+        System.out.println("2 for teacher");
+        System.out.println("3 to go back");
+        int type = scanner.nextInt();
+        if(type == 1) {
+            this.studentLogin();
+        }
+        else if(type == 2) {
+            this.teacherLogin();
+        }
+        else if(type == 3) 
+            return 0;
+        else {
+            System.out.println("Wrong option, Enter again !");
+            this.register();
+        }
+        return 1;
+    }
 }
