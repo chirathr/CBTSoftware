@@ -141,7 +141,19 @@ public class Registration {
         System.out.print("Password : ");
         String password = scanner.nextLine();
         student.login(username, password);
-    }   
+        if(student.login(username, password))
+            return 1;
+        return 0;
+    } 
+    public int teacherLogin() {
+        System.out.print("Username : ");
+        String username = scanner.nextLine();
+        System.out.print("Password : ");
+        String password = scanner.nextLine();
+        if(teacher.login(username, password))
+            return 1;
+        return 0;
+    } 
     
     public int login() {
         scanner = new Scanner(System.in);
@@ -151,10 +163,10 @@ public class Registration {
         System.out.println("3 to go back");
         int type = scanner.nextInt();
         if(type == 1) {
-            this.studentLogin();
+            return this.studentLogin();
         }
         else if(type == 2) {
-            this.teacherLogin();
+            return this.teacherLogin();
         }
         else if(type == 3) 
             return 0;
@@ -163,5 +175,12 @@ public class Registration {
             this.register();
         }
         return 1;
+    }
+    
+    public Student getStudent() {
+        return student;
+    }
+    public Teacher getTeacher() {
+        return teacher;
     }
 }
