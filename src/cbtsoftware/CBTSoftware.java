@@ -10,7 +10,7 @@ public class CBTSoftware {
 
     public static void main(String[] args) {
         Registration registration = new Registration();
-        registration.login();
+        registration.loginUser();
         char t = registration.teacherOrStudent();
         System.out.println(t);
     }  

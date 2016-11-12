@@ -34,7 +34,7 @@ public class Registration {
 	int semester;
         int flag=0;
         
-        System.out.println("Student registration");
+        System.out.println("------------Student registration------------");
         
         System.out.print("Enter Your Name : ");
         name = s.nextLine();
@@ -45,7 +45,7 @@ public class Registration {
         System.out.print("Enter a password : ");
         password = s.nextLine();
         
-        System.out.print("Enter your email address");
+        System.out.print("Enter your email address : ");
         flag=0;
         while(flag == 0) {
             email = s.nextLine();
@@ -79,12 +79,12 @@ public class Registration {
         
         int flag=0;
         
-        System.out.println("Teacher registration");
+        System.out.println("-------------Teacher registration---------------");
         
         System.out.print("Enter Your Name : ");
         name = s.nextLine();
         
-        System.out.print("Enter your username:-");
+        System.out.print("Enter your username : ");
         username = s.nextLine();
         
         System.out.print("Enter a password : ");
@@ -170,10 +170,18 @@ public class Registration {
         System.out.println("3 to go back");
         int type = scanner.nextInt();
         if(type == 1) {
-            return this.studentLogin();
+            if(this.studentLogin() == 0) {
+                System.out.println("Wrong username or password! Enter to continue");
+                this.studentLogin();
+            }
+            return 1;
         }
         else if(type == 2) {
-            return this.teacherLogin();
+            if(this.teacherLogin() == 0) {
+                System.out.println("Wrong username or password! Enter to continue");
+                this.teacherLogin();
+            }
+            return 1;
         }
         else if(type == 3) 
             return 0;
@@ -202,5 +210,26 @@ public class Registration {
     public void logout() {
         teacher = null;
         student = null;
+    }
+    
+    public void loginUser() {
+        System.out.println("----------------Login or Register--------------");
+        System.out.println("1 to login");
+        System.out.println("2 signUp");
+        System.out.println("3 to exit");
+        scanner = new Scanner(System.in);
+        int type = scanner.nextInt();
+        if(type == 1) {
+            type = this.login();
+        }
+        else if(type == 2) {
+            type = this.register();
+        }
+        else if(type == 3) 
+            System.exit(0);
+        else {
+            System.out.println("Wrong option, Enter again !");
+            this.register();
+        }
     }
 }
