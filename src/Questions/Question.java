@@ -137,7 +137,7 @@ public class Question {
         return "insert into question values (" + nextId +", " + type + ", " + 
                 numberOfChoices +", '" + options[0] + "', '" + options[1] +
                 "', '" + options[2] + "', '" + options[3] + "', '" + 
-                options[4] + "', '" + question + "', " + tOrF +", '" + 
+                options[4] + "', '" + question + "', " + mcqAnswer + ", " + tOrF +", '" + 
                 fillInTheBlankAnswer +"');";
     }
     
@@ -156,5 +156,18 @@ public class Question {
         psql.insertQuery(query);
         System.out.println("Question save sucessfull!");
         return true;
+    }
+    
+    public void load(int id) {
+        String query = "select max(id) from question where id = "+ id +";";
+        psql.connectPSQL();
+        try {
+            result = psql.runPSQLQuery(query);
+            type = Integer.parseInt(result.get(0).get(1));
+            numberOfChoices = Integer.parseInt(result.get(0).get(2));
+            
+        } catch (SQLException ex) {
+            System.out.println("Question not found in DB");
+        }
     }
 }
