@@ -165,7 +165,19 @@ public class Question {
             result = psql.runPSQLQuery(query);
             type = Integer.parseInt(result.get(0).get(1));
             numberOfChoices = Integer.parseInt(result.get(0).get(2));
-            
+            options[0] = result.get(0).get(3);
+            options[1] = result.get(0).get(4);
+            options[2] = result.get(0).get(5);
+            options[3] = result.get(0).get(6);
+            options[4] = result.get(0).get(7);
+            question = result.get(0).get(8);
+            mcqAnswer = Integer.parseInt(result.get(0).get(9));
+            if(Integer.parseInt(result.get(0).get(10)) == 1)
+                trueOrFalseAnswer = true;
+            else
+                trueOrFalseAnswer = false;
+            fillInTheBlankAnswer = result.get(0).get(11);
+
         } catch (SQLException ex) {
             System.out.println("Question not found in DB");
         }
