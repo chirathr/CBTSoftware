@@ -194,4 +194,9 @@ public class Registration {
             return 'S';
         return 'T';
     }
+    
+    public void logout() {
+        teacher = null;
+        student = null;
+    }
 }
