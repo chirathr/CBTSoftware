@@ -50,6 +50,12 @@ public class Student extends Person {
         }
         if(result.size() == 1) {
             System.out.println("Login successful");
+            this.id = Integer.parseInt(result.get(0).get(0));
+            this.name = result.get(0).get(1);
+            this.username = result.get(0).get(2);
+            this.password = result.get(0).get(3);
+            this.email = result.get(0).get(4);
+            this.semster = Integer.parseInt(result.get(0).get(5));
             return true;
         }
         return false;
