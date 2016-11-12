@@ -85,7 +85,7 @@ public class Teacher extends Person {
             int nextId = Integer.parseInt(result.get(0).get(0)) + 1;
             query = "insert into teacher values(" + nextId + ", '" + 
                     name + "', '" + username + "', '" + password +
-                    "', '" + email + "', " + semster + ");";
+                    "', '" + email + "', " + department + ");";
             psql.connectPSQL();
             psql.insertQuery(query);
             System.out.println("User created successfully!");
