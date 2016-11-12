@@ -136,22 +136,25 @@ public class Registration {
     }
     
     public int studentLogin() {
-        System.out.print("Username : ");
-        String username = scanner.nextLine();
-        System.out.print("Password : ");
-        String password = scanner.nextLine();
-        student.login(username, password);
+        System.out.println("Username and password ");
+        String user = scanner.nextLine();
+        String username = "chirath";
+        String password = "1234";
+        student = new Student();
         if(student.login(username, password))
             return 1;
+        student = null;
         return 0;
     } 
     public int teacherLogin() {
-        System.out.print("Username : ");
+        System.out.println("Username :");
         String username = scanner.nextLine();
-        System.out.print("Password : ");
+        System.out.println("Password : ");
         String password = scanner.nextLine();
+        teacher = new Teacher();
         if(teacher.login(username, password))
             return 1;
+        teacher = null;
         return 0;
     } 
     
@@ -182,5 +185,13 @@ public class Registration {
     }
     public Teacher getTeacher() {
         return teacher;
+    }
+    
+    public char teacherOrStudent() {
+        if(teacher == null && student == null)
+            return 'N';
+        if(teacher == null)
+            return 'S';
+        return 'T';
     }
 }
