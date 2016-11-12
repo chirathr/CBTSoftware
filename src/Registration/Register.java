@@ -115,7 +115,7 @@ public class Register {
         scanner = new Scanner(System.in);
         
         System.out.println("1 for student");
-        System.out.println("2 for student");
+        System.out.println("2 for teacher");
         System.out.println("3 to go back");
         int type = scanner.nextInt();
         if(type == 1) {

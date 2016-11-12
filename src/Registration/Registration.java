@@ -5,6 +5,7 @@
  */
 package Registration;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -25,6 +26,7 @@ public class Registration {
         choice = scanner.nextInt();
         if(choice == 1) {
             Login login = new Login();
+            login.login();
             return 1;
         }
         else if(choice == 2) {

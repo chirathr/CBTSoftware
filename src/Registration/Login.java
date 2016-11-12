@@ -5,68 +5,48 @@
  */
 package Registration;
 
-import Dbconnection.PSQLConnect;
-import User.Student;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import Dbconnection.PSQLConnect;
+import java.util.Scanner;
 /**
  *
  * @author chirath
  */
 public class Login {
     
-    public String[] login() {
+    private void studentLogin() {
         
-        List<List<String>> result = null;
-        String[] loginData = null;
-        FileReader file = null;
-        
-        try { 
-            
-            PSQLConnect psql = new PSQLConnect();
-            psql.connectPSQL();
-            file = new FileReader("cache.data");
-            BufferedReader fileReader = new BufferedReader(file);
-            
-            try {
-                String line = fileReader.readLine();
-                String[] cache = line.split(", ");
-                
-                try {
-                    String query = "select id from teacher where username = "
-                            + cache[0] + ";";
-                    result = psql.runPSQLQuery(query);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Student.class.getName()).log(Level.SEVERE,
-                            null, ex);
-                }
-                
-                if(result.size() == 1) {
-                    System.out.println("Login successful");
-                    return cache;
-                }
-            } catch (IOException ex) {
-                
-            }
-            
-        } catch (FileNotFoundException ex) {
-            
-            
-           
-        } finally {
-            try {
-                file.close();
-            } catch (IOException ex) {
-               
-            }
-        }
-        return loginData;
     }
+
+    private void teacherLogin() {
+        
+    }
+      
+    
+    public int login() {
+        
+        PSQLConnect psql = new PSQLConnect();
+        psql.connectPSQL();
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("1 for student");
+        System.out.println("2 for teacher");
+        System.out.println("3 to go back");
+        int type = scanner.nextInt();
+        if(type == 1) {
+            this.studentLogin();
+        }
+        else if(type == 2) {
+            this.teacherLogin();
+        }
+        else if(type == 3) 
+            return 0;
+        else {
+            System.out.println("Wrong option, Enter again !");
+            this.login();
+        }
+        return 1;
+    }
+        
 }
