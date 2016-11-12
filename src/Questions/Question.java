@@ -17,21 +17,22 @@ import java.util.logging.Logger;
  * @author chirath
  */
 public class Question {
-    int questionNumber, type, numberOfChoices, mcqAnswer;
-    int[] mcqAnswers;
+    List<List<String>> result = null;
+    PSQLConnect psql = null;
+    int id, type, numberOfChoices, mcqAnswer;
     String question;
     String[] options = new String[5];
-    boolean trueOrFalseAnswer;
+    boolean trueOrFalseAnswer = true;
     String fillInTheBlankAnswer;
 
     //setters and getters
 
-    public int getQuestionNumber() {
-        return questionNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setQuestionNumber(int questionNumber) {
-        this.questionNumber = questionNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getType() {
@@ -56,14 +57,6 @@ public class Question {
 
     public void setMcqAnswer(int mcqAnswer) {
         this.mcqAnswer = mcqAnswer;
-    }
-
-    public int[] getMcqAnswers() {
-        return mcqAnswers;
-    }
-
-    public void setMcqAnswers(int[] mcqAnswers) {
-        this.mcqAnswers = mcqAnswers;
     }
 
     public String getQuestion() {
@@ -100,58 +93,68 @@ public class Question {
     
     // Constructors
 
-    public void setMCQSingle(int qno, String q, int nofc, String options[], int mcqAnswer) {
+    public void setMCQSingle(String q, int nofc, String options[], int mcqAnswer) {
         // mcq(single answer)
         this.type = 1;
-        this.questionNumber = qno;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
         this.mcqAnswer= mcqAnswer;
     }
     
-    public void setMCQMultiple(int qno, String q, int nofc, String options[], int mcqAnswers[]) {
+    public void setMCQMultiple(String q, int nofc, String options[]) {
         //mcq(multiple answers)
         this.type = 2;
-        this.questionNumber = qno;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
-        this.mcqAnswers = mcqAnswers;
     }
-    public void setTrueOrFalse(int qno, String q, boolean torF) {
+    public void setTrueOrFalse(String q, boolean torF) {
         // True or False
         this.type = 3;
-        this.questionNumber = qno;
         this.question = q;
         this.trueOrFalseAnswer = torF;
     }
-    public void setFillInTheBlank(int qno, String q, String ans) {
+    public void setFillInTheBlank(String q, String ans) {
         // Fill in the blanks
         this.type = 4;
-        this.questionNumber = qno;
         this.question = q;
         this.fillInTheBlankAnswer = ans;
     }
     
+    String getInsertQuestionQuery(int type, int numberOfChoices) throws SQLException {
+        String query = "select max(id) from question;";
+        psql.connectPSQL();
+        result = psql.runPSQLQuery(query);
+        int nextId = 0; 
+        nextId = Integer.parseInt(result.get(0).get(0)) + 1;
+        int tOrF;
+        if(trueOrFalseAnswer)
+            tOrF = 1;
+        else
+            tOrF = 0;
+            
+        return "insert into question values (" + nextId +", " + type + ", " + 
+                numberOfChoices +", '" + options[0] + "', '" + options[1] +
+                "', '" + options[2] + "', '" + options[3] + "', '" + 
+                options[4] + "', '" + question + "', " + tOrF +", '" + 
+                fillInTheBlankAnswer +"');";
+    }
+    
     public boolean save() {
-        List<List<String>> result = null;
-        PSQLConnect psql = new PSQLConnect();
+        
+        psql = new PSQLConnect();
+        
+        String query;
         try {
-            String query = "select max(id) from question;";
-            psql.connectPSQL();
-            result = psql.runPSQLQuery(query);
-            int nextId = 0; 
-            nextId = Integer.parseInt(result.get(0).get(0)) + 1;
-            
-            query = "insert into question values(";
-            
-            psql.connectPSQL();
-            psql.insertQuery(query);
-            System.out.println("Question save sucessfull!");
+            query = getInsertQuestionQuery(type, numberOfChoices);
         } catch (SQLException ex) {
             return false;
         }
+            
+        psql.connectPSQL();
+        psql.insertQuery(query);
+        System.out.println("Question save sucessfull!");
         return true;
     }
 }
