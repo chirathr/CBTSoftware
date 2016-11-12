@@ -24,12 +24,16 @@ create table question(
     id numeric(10) primary key,
     type numeric(2),
     numerOfChoices numeric(2),
-    mcqAnswer1 numeric(2),
-    mcqAnswer2 numeric(2),
-    mcqAnswer3 numeric(2),
-    mcqAnswer4 numeric(2),
-    mcqAnswer5 numeric(2),
+    mcqAnswer1 varchar(200),
+    mcqAnswer2 varchar(200),
+    mcqAnswer3 varchar(200),
+    mcqAnswer4 varchar(200),
+    mcqAnswer5 varchar(200),
     question varchar(2000),
-    trueOrFalse numeric(1),
+    trueOrFalse numeric(2),
     fillInTheBlankAnswer varchar(200)
+);
+
+insert into question values (1, 2, 5, 'option 1', 'option 2', 'option 3', 'option 4', 'option 5', 
+    'Question text?', -1, ''
 );
