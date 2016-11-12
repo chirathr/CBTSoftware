@@ -89,6 +89,7 @@ public class Teacher extends Person {
             psql.connectPSQL();
             psql.insertQuery(query);
             System.out.println("User created successfully!");
+            this.login(username, password);
         } catch (SQLException ex) {
             Logger.getLogger(
                     Student.class.getName()).log(Level.SEVERE, 
