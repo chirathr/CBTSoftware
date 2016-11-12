@@ -136,10 +136,12 @@ public class Registration {
     }
     
     public int studentLogin() {
-        System.out.println("Username and password ");
-        String user = scanner.nextLine();
-        String username = "chirath";
-        String password = "1234";
+        String username = scanner.nextLine();
+        System.out.println("---------Enter details--------");
+        System.out.print("Username : ");
+        username = scanner.nextLine();
+        System.out.print("Password : ");
+        String password = scanner.nextLine();
         student = new Student();
         if(student.login(username, password))
             return 1;
@@ -147,9 +149,11 @@ public class Registration {
         return 0;
     } 
     public int teacherLogin() {
-        System.out.println("Username :");
         String username = scanner.nextLine();
-        System.out.println("Password : ");
+        System.out.println("---------Enter details--------");
+        System.out.print("Username : ");
+        username = scanner.nextLine();
+        System.out.print("Password : ");
         String password = scanner.nextLine();
         teacher = new Teacher();
         if(teacher.login(username, password))
