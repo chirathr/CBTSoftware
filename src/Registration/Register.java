@@ -8,6 +8,7 @@ package Registration;
 import java.util.*;
 import java.io.*;
 import User.Student;
+import User.Teacher;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,12 +103,12 @@ public class Register {
         System.out.print("Enter your department : ");
         department = s.nextLine();
         
-//        Teacher teacher = new Teacher();
-//        if(!teacher.save(name, username, password, email, department)) {
-//            System.out.println();
-//            System.out.println("Enter again !!");
-//            this.teacherRegister();
-//        }
+        Teacher teacher = new Teacher();
+        if(!teacher.save(name, username, password, email, department)) {
+            System.out.println();
+            System.out.println("Enter again !!");
+            this.teacherRegister();
+        }
     }
     
     public void register() {
