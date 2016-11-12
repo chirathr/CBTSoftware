@@ -111,7 +111,7 @@ public class Register {
         }
     }
     
-    public void register() {
+    public int register() {
         scanner = new Scanner(System.in);
         
         System.out.println("1 for student");
@@ -125,10 +125,11 @@ public class Register {
             this.teacherRegister();
         }
         else if(type == 3) 
-            return;
+            return 0;
         else {
             System.out.println("Wrong option, Enter again !");
             this.register();
         }
+        return 1;
     }
 }
