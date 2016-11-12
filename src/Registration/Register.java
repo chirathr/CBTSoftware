@@ -113,7 +113,7 @@ public class Register {
     
     public int register() {
         scanner = new Scanner(System.in);
-        
+        System.out.println("----------------Register--------------");
         System.out.println("1 for student");
         System.out.println("2 for teacher");
         System.out.println("3 to go back");
