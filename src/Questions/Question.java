@@ -5,6 +5,13 @@
  */
 package Questions;
 
+import Dbconnection.PSQLConnect;
+import User.Student;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author chirath
@@ -126,6 +133,25 @@ public class Question {
         this.question = q;
         this.fillInTheBlankAnswer = ans;
     }
-
-
+    
+    public boolean save() {
+        List<List<String>> result = null;
+        PSQLConnect psql = new PSQLConnect();
+        try {
+            String query = "select max(id) from question;";
+            psql.connectPSQL();
+            result = psql.runPSQLQuery(query);
+            int nextId = 0; 
+            nextId = Integer.parseInt(result.get(0).get(0)) + 1;
+            
+            query = "insert into question values(";
+            
+            psql.connectPSQL();
+            psql.insertQuery(query);
+            System.out.println("Question save sucessfull!");
+        } catch (SQLException ex) {
+            return false;
+        }
+        return true;
+    }
 }
