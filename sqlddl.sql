@@ -33,9 +33,26 @@ create table question(
     mcqanswer numeric(2),
     trueOrFalse numeric(2),
     fillInTheBlankAnswer varchar(200),
-    mark numeric(5)
+    mark numeric(5),
+    teacherId numeric references teacher
 );
 
 insert into question values (1, 2, 5, 'option 1', 'option 2', 'option 3', 'option 4', 'option 5', 
-    'Question text?', 1, -1, '', 2
+    'Question text?', 1, -1, '', 2, 1
 );
+
+create table exam(
+    id numeric(10) primary key,
+    examName varchar(100),
+    dateOfExam varchar(100),
+    teacherId numeric references teacher
+);
+
+insert into exam values(1, 'online exam 1', 1);
+
+create table examination(
+    examId numeric(10) references exam,
+    questionId numeric(10) references question
+);
+
+insert into examination values(1,1);

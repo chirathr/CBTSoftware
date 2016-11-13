@@ -68,6 +68,53 @@ public class Registration {
         }
     }
     
+    public void registerStudent() {
+        /*get student data : String name, String username, 
+        String password, String email, int semster */
+        Scanner s = new Scanner(System.in);
+	String name="";
+	String uname="";
+        String username;
+	String password="";
+	String email="";
+	int semester;
+        int flag=0;
+        
+        System.out.println("------------Student registration------------");
+        
+        System.out.print("Enter student Name : ");
+        name = s.nextLine();
+        
+        System.out.print("Enter student username:-");
+        username = s.nextLine();
+        
+        System.out.print("Enter student password : ");
+        password = s.nextLine();
+        
+        System.out.print("Enter student email address : ");
+        flag=0;
+        while(flag == 0) {
+            email = s.nextLine();
+            Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+            Matcher mat = pattern.matcher(email);
+            if(mat.matches())
+                flag=1;
+            else
+                System.out.println("Not a valid email address, Enter again");
+        }
+                
+        System.out.print("Enter student semester : ");
+        semester = s.nextInt();
+        
+        student = new Student();
+        if(!student.save(name, username, password, email, semester)) {
+            System.out.println();
+            System.out.println("Enter again !!");
+            this.studentRegister();
+        }
+        student = null;
+    }
+    
     public void teacherRegister() {
         Scanner s = new Scanner(System.in);
 	String name="";

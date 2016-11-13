@@ -60,6 +60,16 @@ public class CBTSoftware {
         return 1;
     }
     
+    public void addStudents() {
+        char ch = 'y';
+        while(ch == 'y' || ch =='Y') {
+            registration.registerStudent();
+            System.out.println("Do you want to enter another student? (y or n)");
+            String s = scanner.nextLine();
+            ch = scanner.nextLine().charAt(0);
+        }
+    }
+    
     public int doTeacher() {
         System.out.println("----------------Faculty Menu--------------");
         System.out.println("1. Add a student");
@@ -69,6 +79,7 @@ public class CBTSoftware {
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:
+                this.addStudents();
                 break;
             case 2:
                 AddQuestions aq = new AddQuestions();
