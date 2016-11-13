@@ -45,14 +45,20 @@ public class AddQuestions {
     }
     
     public void addMCQSingle() {
-        question = new Question();
-        question.setMCQSingle(
-                this.getQuestion(), 
-                this.getNumberofChoices(), 
-                this.getOptions(),
-                this.getMacqAnswer(), 
-                this.getMacqAnswer());
-        question.save();
+        System.out.println("----------------MCQ single--------------");
+        System.out.println("Number of question?");
+        int n = scanner.nextInt();
+        for(int i = 0; i < n; ++i) {
+            System.out.println("Enter question " + i+1);
+            question = new Question();
+            question.setMCQSingle(
+                    this.getQuestion(), 
+                    this.getNumberofChoices(), 
+                    this.getOptions(),
+                    this.getMacqAnswer(), 
+                    this.getMacqAnswer());
+            question.save();
+        }  
     }
     
     public boolean getTrueOrFalseAns() {
@@ -66,12 +72,18 @@ public class AddQuestions {
     }
     
     public void addTrueOrFalse() {
-        question = new Question();
-        question.setTrueOrFalse(
-                this.getQuestion(), 
-                this.getTrueOrFalseAns(), 
-                this.getMacqAnswer());
-        question.save();
+        System.out.println("----------------True or False--------------");
+        System.out.println("Number of question?");
+        int n = scanner.nextInt();
+        for(int i = 0; i < n; ++i) {
+            System.out.println("Enter question " + i+1);
+            question = new Question();
+            question.setTrueOrFalse(
+                    this.getQuestion(), 
+                    this.getTrueOrFalseAns(), 
+                    this.getMacqAnswer());
+            question.save();
+        }        
     }
     
     public String getFillInTheBlankAns() {
@@ -80,11 +92,41 @@ public class AddQuestions {
     }
     
     public void addFillInTheBlanks() {
-        question = new Question();
-        question.setFillInTheBlank(
-                this.getQuestion(), 
-                this.getFillInTheBlankAns(), 
-                this.getMacqAnswer());
-        question.save();
+        System.out.println("----------------Fill in the blanks--------------");
+        System.out.println("Number of question?");
+        int n = scanner.nextInt();
+        for(int i = 0; i < n; ++i) {
+            System.out.println("Enter question " + i+1);
+            question = new Question();
+            question.setFillInTheBlank(
+                    this.getQuestion(), 
+                    this.getFillInTheBlankAns(), 
+                    this.getMacqAnswer());
+            question.save();
+        }
+    }
+    
+    public void addQuestions() {
+        System.out.println("----------------Add Questions--------------");
+        System.out.println("1 for MCQ single answer");
+        System.out.println("2 for MCQ multiple answer");
+        System.out.println("3 for true or false");
+        System.out.println("4 for fill in the blanks");
+        System.out.println("5 to exit");
+        int ch = scanner.nextInt();
+        switch(ch) {
+            case 1: addMCQSingle();
+            break;
+            case 2: addMCQSingle();
+            break;
+            case 3: addTrueOrFalse();
+            break;
+            case 4: addFillInTheBlanks();
+            break;
+            case 5:
+            break;
+            default:
+                System.out.println("Wrong choice");
+        }
     }
 }

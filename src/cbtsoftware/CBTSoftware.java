@@ -1,5 +1,6 @@
 package cbtsoftware;
 
+import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
 import User.Student;
@@ -44,8 +45,16 @@ public class CBTSoftware {
     public void doTeacher() {
         System.out.println("----------------Staff Menu--------------");
         System.out.println("1 for student");
-        System.out.println("2 for teacher");
+        System.out.println("2 to add question");
         System.out.println("3 to go back");
+        int ch = scanner.nextInt();
+        switch(ch) {
+            case 1:
+                break;
+            case 2:
+                AddQuestions aq = new AddQuestions();
+                aq.addQuestions();
+        }
         int choice = scanner.nextInt();
     }
 
