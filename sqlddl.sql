@@ -45,10 +45,11 @@ create table exam(
     id numeric(10) primary key,
     examName varchar(100),
     dateOfExam varchar(100),
-    teacherId numeric references teacher
+    teacherId numeric references teacher,
+    totalMark float
 );
 
-insert into exam values(1, 'online exam 1', 1);
+insert into exam values(1, 'online exam 1', '13-11-2016', 1, 10);
 
 create table examination(
     examId numeric(10) references exam,
@@ -56,3 +57,13 @@ create table examination(
 );
 
 insert into examination values(1,1);
+
+create table result(
+    studentId numeric(10) references student,
+    examName varchar(100),
+    examId numeric(10),
+    marks float,
+    total float
+);
+
+insert into result values(1, 'online exam 1', 1, 10);
