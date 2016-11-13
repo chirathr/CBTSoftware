@@ -33,7 +33,9 @@ public class Exam {
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             int nextId = Integer.parseInt(result.get(0).get(0) + 1);
-            query = "insert into exam values(1, 'online exam 1', '13-11-2016', 1, 60, 20);";
+            query = "insert into exam values(" + nextId + ", '" + examName + 
+                    "', '" + dateOfExam + "'," + teacherId + ", " + 
+                    time + ", " + totalMark + ");";
             psql.connectPSQL();
             psql.insertQuery(query);
         } catch (SQLException ex) {
