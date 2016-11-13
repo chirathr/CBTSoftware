@@ -25,20 +25,20 @@ Though some of the features listed below are necessary for the system to functio
 - time duration etc
 - But for these feature sets, no user interface is required, but there should be some feature (say reading from a file) present.
 
-# Prerequisites
+## Prerequisites
 
 ```
 $ sudo apt-get install postgresql pgadmin3
 ```
 
-# Clone the repo
+## Clone the repo
 
 Change directory to the localhost folder
 ```
 $ https://github.com/Chirath02/CBTSoftware.git
 ```
 
-# PgAdmin3
+## PgAdmin3
 
 Modify password for role postgres:
 ```
@@ -47,7 +47,7 @@ $ alter user postgres with password 'postgres';
 ```
 Now connect to pgadmin using username postgres and password postgres
 
-# DDL commands to create Tables
+## DDL commands to create Tables
 
 ```
 $ sudo -u postgres -i
