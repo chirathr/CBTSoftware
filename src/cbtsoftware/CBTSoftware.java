@@ -1,5 +1,6 @@
 package cbtsoftware;
 
+import Exam.Exam;
 import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
@@ -91,6 +92,8 @@ public class CBTSoftware {
                 registration.teacherRegister();
                 break;
             case 4:
+                Exam e = new Exam();
+                e.addExam(teacher.getId());
                 break;
             case 5:
                 registration.logout();

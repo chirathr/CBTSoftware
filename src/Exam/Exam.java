@@ -120,7 +120,7 @@ public class Exam {
     
     public void selectQuestions() {
         Question question = new Question();
-        System.out.print("\n----------Questions------------");
+        System.out.print("\n----------Select Questions------------");
         System.out.print("\n1. Add new questions");
         System.out.print("\n2. Select from existing questions");
         int choice = scanner.nextInt();
@@ -137,13 +137,20 @@ public class Exam {
     }
     
     public void addExam(int tId) {
+        scanner = new Scanner(System.in);
+        question = new Question();
+        
         teacherId = tId;
-        System.out.print("\nEnter exam name : ");
+        System.out.print("Enter exam name : ");
         examName = scanner.nextLine();
-        System.out.print("\nEnter date of exam : ");
+        System.out.print("Enter date of exam : ");
         dateOfExam = scanner.nextLine();
-        System.out.print("\nEnter duration : ");
+        System.out.print("Enter duration : ");
         time = scanner.nextInt();
         this.selectQuestions();
+        System.out.print("Do you want to add another exam?(y or n)");
+        char ch = scanner.nextLine().charAt(0);
+        if(ch=='y'||ch=='Y')
+            this.addExam(tId);
     }
 }
