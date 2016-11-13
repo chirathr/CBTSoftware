@@ -199,5 +199,7 @@ public class Question {
     
     public void setAll() {
         //Create a function similar to above that takes all the fields except id and assign it to variables.
+        // no need to use db
+        //just inizialize all viables with parameters from read file
     }
 }
