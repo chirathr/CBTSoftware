@@ -36,9 +36,9 @@ public class CBTSoftware {
     
     public int doStudent() {
         System.out.println("----------------Student Menu--------------");
-        System.out.println("1. attent examination");
-        System.out.println("2. logout");
-        System.out.println("3. exit");
+        System.out.println("1. Attent examination");
+        System.out.println("2. Logout");
+        System.out.println("3. Exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:   
@@ -62,9 +62,10 @@ public class CBTSoftware {
     
     public int doTeacher() {
         System.out.println("----------------Faculty Menu--------------");
-        System.out.println("1 for student");
-        System.out.println("2 to add question");
-        System.out.println("3 to go back");
+        System.out.println("1. Add a student");
+        System.out.println("2. Add questions");
+        System.out.println("3. Logout");
+        System.out.println("4. Exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:
@@ -73,11 +74,17 @@ public class CBTSoftware {
                 AddQuestions aq = new AddQuestions();
                 aq.addQuestions();
                 break;
+            case 3:
+                registration.logout();
+                break;
+            case 4:
+                return 0;
             default: 
                 System.out.println("Wrong Choice, try again.");
                 this.doTeacher();
         }
-        return 1;    }
+        return 1;    
+    }
 
     public static void main(String[] args) {
         CBTSoftware cbt = new CBTSoftware();
