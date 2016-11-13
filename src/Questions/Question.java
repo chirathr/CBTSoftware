@@ -159,7 +159,8 @@ public class Question {
     }
     
     public void load(int id) {
-        String query = "select max(id) from question where id = "+ id +";";
+        String query = "select * from question where id = "+ id +";";
+        psql = new PSQLConnect();
         psql.connectPSQL();
         try {
             result = psql.runPSQLQuery(query);
