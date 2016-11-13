@@ -1,5 +1,6 @@
 package cbtsoftware;
 
+import Questions.Question;
 import Registration.Registration;
 import User.Student;
 import User.Teacher;
@@ -49,12 +50,14 @@ public class CBTSoftware {
     }
 
     public static void main(String[] args) {
-        CBTSoftware cbt = new CBTSoftware();
-        cbt.logInUser();
-        if(cbt.userType == 'S')
-            cbt.doStudent();
-        else 
-            cbt.doTeacher();
-        
-    }  
+//        CBTSoftware cbt = new CBTSoftware();
+//        cbt.logInUser();
+//        if(cbt.userType == 'S')
+//            cbt.doStudent();
+//        else 
+//            cbt.doTeacher();
+
+
+    } 
+    
 }

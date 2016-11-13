@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class Question {
     List<List<String>> result = null;
     PSQLConnect psql = null;
-    int id, type, numberOfChoices, mcqAnswer;
+    int id, type, numberOfChoices, mcqAnswer, mark;
     String question;
     String[] options = new String[5];
     boolean trueOrFalseAnswer = true;
@@ -90,36 +90,48 @@ public class Question {
     public void setFillInTheBlankAnswer(String fillInTheBlankAnswer) {
         this.fillInTheBlankAnswer = fillInTheBlankAnswer;
     }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
     
     // Constructors
 
-    public void setMCQSingle(String q, int nofc, String options[], int mcqAnswer) {
+    public void setMCQSingle(String q, int nofc, String options[], int mcqAnswer, int mark) {
         // mcq(single answer)
         this.type = 1;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
         this.mcqAnswer= mcqAnswer;
+        this.mark = mark;
     }
     
-    public void setMCQMultiple(String q, int nofc, String options[]) {
+    public void setMCQMultiple(String q, int nofc, String options[],int mark) {
         //mcq(multiple answers)
         this.type = 2;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
+        this.mark = mark;
     }
-    public void setTrueOrFalse(String q, boolean torF) {
+    public void setTrueOrFalse(String q, boolean torF, int mark) {
         // True or False
         this.type = 3;
         this.question = q;
         this.trueOrFalseAnswer = torF;
+        this.mark = mark;
     }
-    public void setFillInTheBlank(String q, String ans) {
+    public void setFillInTheBlank(String q, String ans, int mark) {
         // Fill in the blanks
         this.type = 4;
         this.question = q;
         this.fillInTheBlankAnswer = ans;
+        this.mark = mark;
     }
     
     String getInsertQuestionQuery(int type, int numberOfChoices) throws SQLException {
@@ -138,7 +150,7 @@ public class Question {
                 numberOfChoices +", '" + options[0] + "', '" + options[1] +
                 "', '" + options[2] + "', '" + options[3] + "', '" + 
                 options[4] + "', '" + question + "', " + mcqAnswer + ", " + tOrF +", '" + 
-                fillInTheBlankAnswer +"');";
+                fillInTheBlankAnswer +"', " + mark +");";
     }
     
     public boolean save() {
@@ -178,6 +190,7 @@ public class Question {
             else
                 trueOrFalseAnswer = false;
             fillInTheBlankAnswer = result.get(0).get(11);
+            mark = Integer.parseInt(result.get(0).get(12));
 
         } catch (SQLException ex) {
             System.out.println("Question not found in DB");
