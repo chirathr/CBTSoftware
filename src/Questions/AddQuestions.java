@@ -80,7 +80,7 @@ public class AddQuestions {
             System.out.println("Enter question " + i+1);
             String temp = scanner.nextLine();
             question = new Question();
-            question.setMCQSingle(
+            question.setMCQMultiple(
                     this.getQuestion(), 
                     this.getNumberofChoices(), 
                     this.getOptions(),
@@ -154,7 +154,7 @@ public class AddQuestions {
         switch(ch) {
             case 1: addMCQSingle(tId);
             return;
-            case 2: addMCQSingle(tId);
+            case 2: addMCQMultiple(tId);
             break;
             case 3: addTrueOrFalse(tId);
             break;

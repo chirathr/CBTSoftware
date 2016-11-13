@@ -83,7 +83,7 @@ public class CBTSoftware {
                 break;
             case 2:
                 AddQuestions aq = new AddQuestions();
-                aq.addQuestions();
+                aq.addQuestions(teacher.getId());
                 break;
             case 3:
                 registration.logout();

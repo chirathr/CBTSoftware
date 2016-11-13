@@ -30,7 +30,7 @@ create table question(
     choice4 varchar(200),
     choice5 varchar(200),
     question varchar(2000),
-    mcqanswer numeric(2),
+    mcqanswer varchar(100),
     trueOrFalse numeric(2),
     fillInTheBlankAnswer varchar(200),
     mark numeric(5),
@@ -38,7 +38,7 @@ create table question(
 );
 
 insert into question values (1, 2, 5, 'option 1', 'option 2', 'option 3', 'option 4', 'option 5', 
-    'Question text?', 1, -1, '', 2, 1
+    'Question text?', '1', -1, '', 2, 1
 );
 
 create table exam(
