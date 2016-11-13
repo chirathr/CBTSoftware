@@ -19,11 +19,12 @@ import java.util.logging.Logger;
 public class Question {
     List<List<String>> result = null;
     PSQLConnect psql = null;
-    int id, type, numberOfChoices, mcqAnswer, mark;
-    String question;
+    int id, type, numberOfChoices, mark;
+    String question, mcqAnswers;
     String[] options = new String[5];
     boolean trueOrFalseAnswer = true;
     String fillInTheBlankAnswer;
+    int teacherId;
 
     //setters and getters
 
@@ -51,12 +52,12 @@ public class Question {
         this.numberOfChoices = numberOfChoices;
     }
 
-    public int getMcqAnswer() {
-        return mcqAnswer;
+    public String getMcqAnswers() {
+        return mcqAnswers;
     }
 
-    public void setMcqAnswer(int mcqAnswer) {
-        this.mcqAnswer = mcqAnswer;
+    public void setMcqAnswers(String mcqAnswers) {
+        this.mcqAnswers = mcqAnswers;
     }
 
     public String getQuestion() {
@@ -98,44 +99,57 @@ public class Question {
     public void setMark(int mark) {
         this.mark = mark;
     }
+
+    public int getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
+    }
+    
     
     // Constructors
 
-    public void setMCQSingle(String q, int nofc, String options[], int mcqAnswer, int mark) {
+    public void setMCQSingle(String q, int nofc, String options[], String mcqAnswers, int mark, int tId) {
         // mcq(single answer)
         this.type = 1;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
-        this.mcqAnswer= mcqAnswer;
+        this.mcqAnswers= mcqAnswers;
         this.mark = mark;
+        this.teacherId = tId;
     }
     
-    public void setMCQMultiple(String q, int nofc, String options[],int mcqAnswer, int mark) {
+    public void setMCQMultiple(String q, int nofc, String options[],String mcqAnswers, int mark, int tId) {
         //mcq(multiple answers)
         this.type = 2;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
         this.mark = mark;
-        this.mcqAnswer = mcqAnswer;
+        this.mcqAnswers = mcqAnswers;
+        this.teacherId = tId;
     }
-    public void setTrueOrFalse(String q, boolean torF, int mark) {
+    public void setTrueOrFalse(String q, boolean torF, int mark, int tId) {
         // True or False
         this.type = 3;
         this.question = q;
         this.trueOrFalseAnswer = torF;
         this.mark = mark;
+        this.teacherId = tId;
     }
-    public void setFillInTheBlank(String q, String ans, int mark) {
+    public void setFillInTheBlank(String q, String ans, int mark, int tId) {
         // Fill in the blanks
         this.type = 4;
         this.question = q;
         this.fillInTheBlankAnswer = ans;
         this.mark = mark;
+        this.teacherId = tId;
     }
     
-    String getInsertQuestionQuery(int type, int numberOfChoices) throws SQLException {
+    String getInsertQuestionQuery() throws SQLException {
         String query = "select max(id) from question;";
         psql.connectPSQL();
         result = psql.runPSQLQuery(query);
@@ -150,8 +164,8 @@ public class Question {
         return "insert into question values (" + nextId +", " + type + ", " + 
                 numberOfChoices +", '" + options[0] + "', '" + options[1] +
                 "', '" + options[2] + "', '" + options[3] + "', '" + 
-                options[4] + "', '" + question + "', " + mcqAnswer + ", " + tOrF +", '" + 
-                fillInTheBlankAnswer +"', " + mark +");";
+                options[4] + "', '" + question + "', '" + mcqAnswers + "', " + tOrF +", '" + 
+                fillInTheBlankAnswer +"', " + mark +", " + teacherId + ");";
     }
     
     public boolean save() {
@@ -160,7 +174,7 @@ public class Question {
         
         String query;
         try {
-            query = getInsertQuestionQuery(type, numberOfChoices);
+            query = getInsertQuestionQuery();
         } catch (SQLException ex) {
             return false;
         }
@@ -185,14 +199,14 @@ public class Question {
             options[3] = result.get(0).get(6);
             options[4] = result.get(0).get(7);
             question = result.get(0).get(8);
-            mcqAnswer = Integer.parseInt(result.get(0).get(9));
+            mcqAnswers = result.get(0).get(9);
             if(Integer.parseInt(result.get(0).get(10)) == 1)
                 trueOrFalseAnswer = true;
             else
                 trueOrFalseAnswer = false;
             fillInTheBlankAnswer = result.get(0).get(11);
             mark = Integer.parseInt(result.get(0).get(12));
-
+            teacherId = Integer.parseInt(result.get(0).get(13));
         } catch (SQLException ex) {
             System.out.println("Question not found in DB");
         }
@@ -236,12 +250,20 @@ public class Question {
     public float checkAnswer(String ans) {
         if(type == 1) {
             int answer = Integer.parseInt(ans);
-            if(answer == mcqAnswer)
+            int mcqAns = Integer.parseInt(mcqAnswers.split(",")[0]);
+            if(answer == mcqAns)
                 return (float)mark;
             return 0;
         }
         else if(type == 2) {
-            
+            float mcqMark = 0;
+            String[] mcqAns = mcqAnswers.split(",");
+            String[] answer = ans.split(",");
+            for(int i=0; i < mcqAns.length; ++i) {
+                if(mcqAns[i].equals(answer[i]))
+                    mcqMark += mark/mcqAns.length;
+            }
+            return mcqMark;
         }
         else if( type == 3) {
             char answer = 'F';
@@ -257,6 +279,5 @@ public class Question {
                 return (float)mark;
             return 0;
         }
-        return 0;
     }
 }
