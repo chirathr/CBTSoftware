@@ -58,7 +58,12 @@ public class TakeTest {
             System.out.print((int)(time - (currentTime - startTime))/60);
             System.out.print(" hrs, ");
             System.out.print((int)(time - (currentTime - startTime))%60);
+            
             System.out.print(" mins remaining\n");
+            if((time - (currentTime - startTime)) < 1) {
+                System.out.println("\n-----------------------------Time up---------------------------");
+                break;
+            }
             question.load(i);
             question.print(j);
             System.out.print("   ->");

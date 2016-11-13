@@ -40,7 +40,21 @@ public class CBTSoftware {
         System.out.println("1 for student");
         System.out.println("2 for teacher");
         System.out.println("3 to go back");
-        int choice = scanner.nextInt();
+        int ch = scanner.nextInt();
+        switch(ch) {
+            case 1:   
+                
+                TakeTest t = new TakeTest();
+                t.setTest(1, 8, 1);
+                float marks = t.StartTest();
+                System.out.println(marks);
+                
+                break;
+            case 2:
+                AddQuestions aq = new AddQuestions();
+                aq.addQuestions();
+                break;
+        }
     }
     
     public void doTeacher() {
@@ -60,17 +74,12 @@ public class CBTSoftware {
     }
 
     public static void main(String[] args) {
-//        CBTSoftware cbt = new CBTSoftware();
-//        cbt.logInUser();
-//        if(cbt.userType == 'S')
-//            cbt.doStudent();
-//        else 
-//            cbt.doTeacher();
-
-        TakeTest t = new TakeTest();
-        t.setTest(1, 8, 300);
-        float marks = t.StartTest();
-        System.out.println(marks);
+        CBTSoftware cbt = new CBTSoftware();
+        cbt.logInUser();
+        if(cbt.userType == 'S')
+            cbt.doStudent();
+        else 
+            cbt.doTeacher();
     } 
     
 }
