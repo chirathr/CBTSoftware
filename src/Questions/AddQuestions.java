@@ -37,9 +37,9 @@ public class AddQuestions {
         return str;
     }
     
-    public int getMcqAnswer() {
-        System.out.print("Enter answer(1-5) :");
-        return scanner.nextInt()-1;
+    public String getMcqAnswer() {
+        System.out.print("Enter answer :");
+        return scanner.nextLine();
     }
     
     public int getMark() {
@@ -47,7 +47,7 @@ public class AddQuestions {
         return scanner.nextInt();
     }
     
-    public void addMCQSingle() {
+    public void addMCQSingle(int tId) {
         System.out.println("----------------MCQ single--------------");
         System.out.println("Number of question?");
         int n = scanner.nextInt();
@@ -60,7 +60,34 @@ public class AddQuestions {
                     this.getNumberofChoices(), 
                     this.getOptions(),
                     this.getMcqAnswer(), 
-                    this.getMark());
+                    this.getMark(),
+                    tId
+            );
+            question.save();
+        }  
+    }
+    
+    public String getMcqAnswers() {
+        System.out.print("Enter answers seperated by comma(,) :");
+        return scanner.nextLine();
+    }
+    
+    public void addMCQMultiple(int tId) {
+        System.out.println("----------------MCQ single--------------");
+        System.out.println("Number of question?");
+        int n = scanner.nextInt();
+        for(int i = 0; i < n; ++i) {
+            System.out.println("Enter question " + i+1);
+            String temp = scanner.nextLine();
+            question = new Question();
+            question.setMCQMultiple(
+                    this.getQuestion(), 
+                    this.getNumberofChoices(), 
+                    this.getOptions(),
+                    this.getMcqAnswers(), 
+                    this.getMark(),
+                    tId
+            );
             question.save();
         }  
     }
@@ -75,7 +102,7 @@ public class AddQuestions {
         return this.getTrueOrFalseAns();
     }
     
-    public void addTrueOrFalse() {
+    public void addTrueOrFalse(int tId) {
         System.out.println("----------------True or False--------------");
         System.out.println("Number of question?");
         int n = scanner.nextInt();
@@ -86,7 +113,9 @@ public class AddQuestions {
             question.setTrueOrFalse(
                     this.getQuestion(), 
                     this.getTrueOrFalseAns(), 
-                    this.getMark());
+                    this.getMark(),
+                    tId
+            );
             question.save();
         }        
     }
@@ -96,7 +125,7 @@ public class AddQuestions {
         return scanner.nextLine();
     }
     
-    public void addFillInTheBlanks() {
+    public void addFillInTheBlanks(int tId) {
         System.out.println("----------------Fill in the blanks--------------");
         System.out.println("Number of question?");
         int n = scanner.nextInt();
@@ -107,12 +136,14 @@ public class AddQuestions {
             question.setFillInTheBlank(
                     this.getQuestion(), 
                     this.getFillInTheBlankAns(), 
-                    this.getMark());
+                    this.getMark(),
+                    tId
+            );
             question.save();
         }
     }
     
-    public void addQuestions() {
+    public void addQuestions(int tId) {
         System.out.println("----------------Add Questions--------------");
         System.out.println("1 for MCQ single answer");
         System.out.println("2 for MCQ multiple answer");
@@ -121,13 +152,13 @@ public class AddQuestions {
         System.out.println("5 to exit");
         int ch = scanner.nextInt();
         switch(ch) {
-            case 1: addMCQSingle();
+            case 1: addMCQSingle(tId);
             return;
-            case 2: addMCQSingle();
+            case 2: addMCQMultiple(tId);
             break;
-            case 3: addTrueOrFalse();
+            case 3: addTrueOrFalse(tId);
             break;
-            case 4: addFillInTheBlanks();
+            case 4: addFillInTheBlanks(tId);
             break;
             case 5:
             break;

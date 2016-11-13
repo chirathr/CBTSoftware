@@ -68,6 +68,53 @@ public class Registration {
         }
     }
     
+    public void registerStudent() {
+        /*get student data : String name, String username, 
+        String password, String email, int semster */
+        Scanner s = new Scanner(System.in);
+	String name="";
+	String uname="";
+        String username;
+	String password="";
+	String email="";
+	int semester;
+        int flag=0;
+        
+        System.out.println("------------Student registration------------");
+        
+        System.out.print("Enter student Name : ");
+        name = s.nextLine();
+        
+        System.out.print("Enter student username:-");
+        username = s.nextLine();
+        
+        System.out.print("Enter student password : ");
+        password = s.nextLine();
+        
+        System.out.print("Enter student email address : ");
+        flag=0;
+        while(flag == 0) {
+            email = s.nextLine();
+            Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+            Matcher mat = pattern.matcher(email);
+            if(mat.matches())
+                flag=1;
+            else
+                System.out.println("Not a valid email address, Enter again");
+        }
+                
+        System.out.print("Enter student semester : ");
+        semester = s.nextInt();
+        
+        student = new Student();
+        if(!student.save(name, username, password, email, semester)) {
+            System.out.println();
+            System.out.println("Enter again !!");
+            this.studentRegister();
+        }
+        student = null;
+    }
+    
     public void teacherRegister() {
         Scanner s = new Scanner(System.in);
 	String name="";
@@ -111,6 +158,7 @@ public class Registration {
             System.out.println("Enter again !!");
             this.teacherRegister();
         }
+        teacher = null;
     }
     
     public int register() {
@@ -165,9 +213,9 @@ public class Registration {
     public int login() {
         scanner = new Scanner(System.in);
         System.out.println("----------------Login--------------");
-        System.out.println("1 for student");
-        System.out.println("2 for teacher");
-        System.out.println("3 to go back");
+        System.out.println("1. Student");
+        System.out.println("2. Faculty");
+        System.out.println("3. Exit");
         int type = scanner.nextInt();
         if(type == 1) {
             if(this.studentLogin() == 0) {
@@ -184,7 +232,7 @@ public class Registration {
             return 1;
         }
         else if(type == 3) 
-            return 0;
+            System.exit(0);
         else {
             System.out.println("Wrong option, Enter again !");
             this.register();
@@ -212,24 +260,9 @@ public class Registration {
         student = null;
     }
     
-    public void loginUser() {
-        System.out.println("----------------Login or Register--------------");
-        System.out.println("1 to login");
-        System.out.println("2 signUp");
-        System.out.println("3 to exit");
-        scanner = new Scanner(System.in);
-        int type = scanner.nextInt();
-        if(type == 1) {
-            type = this.login();
-        }
-        else if(type == 2) {
-            type = this.register();
-        }
-        else if(type == 3) 
-            System.exit(0);
-        else {
-            System.out.println("Wrong option, Enter again !");
-            this.register();
-        }
+    public boolean loggedIn() {
+        if(teacher != null || student != null)
+            return true;
+        return false;
     }
 }

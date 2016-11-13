@@ -30,12 +30,41 @@ create table question(
     choice4 varchar(200),
     choice5 varchar(200),
     question varchar(2000),
-    mcqanswer numeric(2),
+    mcqanswer varchar(100),
     trueOrFalse numeric(2),
     fillInTheBlankAnswer varchar(200),
-    mark numeric(5)
+    mark numeric(5),
+    teacherId numeric references teacher
 );
 
 insert into question values (1, 2, 5, 'option 1', 'option 2', 'option 3', 'option 4', 'option 5', 
-    'Question text?', 1, -1, '', 2
+    'Question text?', '1', -1, '', 2, 1
 );
+
+create table exam(
+    id numeric(10) primary key,
+    examName varchar(100),
+    dateOfExam varchar(100),
+    teacherId numeric references teacher,
+    time numeric(10), 
+    totalMark float
+);
+
+insert into exam values(1, 'online exam 1', '13-11-2016', 1, 60, 20);
+
+create table examination(
+    examId numeric(10) references exam,
+    questionId numeric(10) references question
+);
+
+insert into examination values(1,1);
+
+create table result(
+    studentId numeric(10) references student,
+    examName varchar(100),
+    examId numeric(10),
+    marks float,
+    total float
+);
+
+insert into result values(1, 'online exam 1', 1, 10);
