@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mark;
+package User;
 
 /**
  *
  * @author chirath
  */
-public class Mark {
+public interface User {
     
+    public boolean isIsLoggedIn();
+    
+    public int getId();
+    
+    public boolean login(String username, String password);
 }

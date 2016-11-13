@@ -10,7 +10,7 @@ import Dbconnection.PSQLConnect;
  *
  * @author chirath
  */
-public class Person {
+public class Person implements User{
     int id;
     String name, username, password, email;
     boolean isLoggedIn;
@@ -32,6 +32,9 @@ public class Person {
         return isLoggedIn;
     }
 
+    public boolean login(String username, String password) {
+        return true;
+    }
 
 
     public int getId() {

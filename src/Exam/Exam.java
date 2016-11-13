@@ -6,6 +6,7 @@
 package Exam;
 
 import Dbconnection.PSQLConnect;
+import Questions.AddQuestions;
 import Questions.Question;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,6 +25,7 @@ public class Exam {
     int time;
     String examName, dateOfExam;
     float totalMark;
+    
     
     public void save() {
         try {
@@ -51,7 +53,7 @@ public class Exam {
         psql.insertQuery(query);
     }
     
-    public void addQuestion() {
+    public void addQuestion(int tId) {
         try {
             List<List<String>> result;
             PSQLConnect psql = new PSQLConnect();
@@ -59,9 +61,12 @@ public class Exam {
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             int startId = Integer.parseInt(result.get(0).get(0) + 1);
-            
-            question.getQuestion();
-            
+            String s = scanner.nextLine();
+            System.out.println("How many Questions?");
+            int n = scanner.nextInt();
+            AddQuestions addQ = new AddQuestions();
+            for(int i=0; i < n; ++i)
+                addQ.addQuestions(tId);
             query = "select max(id) from question;";
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
@@ -110,7 +115,7 @@ public class Exam {
         
     }
     
-    public void selectQuestions() {
+    public void selectQuestions(int tId) {
         String temp = scanner.nextLine();
         Question question = new Question();
         System.out.print("\n----------Select Questions------------");
@@ -119,14 +124,14 @@ public class Exam {
         int choice = scanner.nextInt();
         
         if(choice == 1) {
-            this.addQuestion();
+            this.addQuestion(tId);
         }
         else if(choice == 2) {
             this.showQuestions();
         }
         else {
             System.out.print("\nWrong choice, enter again");
-            this.selectQuestions();
+            this.selectQuestions(tId);
         }
     }
     
@@ -142,7 +147,7 @@ public class Exam {
         System.out.print("Enter duration : ");
         time = scanner.nextInt();
         this.save();
-        this.selectQuestions();
+        this.selectQuestions(tId);
         String temp = scanner.nextLine();
         System.out.print("Do you want to add another exam?(y or n)");
         char ch = scanner.nextLine().charAt(0);

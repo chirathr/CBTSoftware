@@ -1,9 +1,11 @@
 package cbtsoftware;
 
 import Exam.Exam;
+import Intro.Introduction;
 import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
+import Result.Result;
 import Test.TakeTest;
 import User.Student;
 import User.Teacher;
@@ -46,17 +48,20 @@ public class CBTSoftware {
             case 1:   
                 
                 TakeTest t = new TakeTest();
-                t.setTest(1, 8, 1);
-                float marks = t.StartTest();
-                System.out.println(marks);
+                t.setTest(1, 8, 10);
+                t.StartTest(student.getId());
                 break;
             case 2:
+                System.out.println("----------------Results Menu--------------");
+                Result r = new Result();
+                r.displayAll(student.getId());
+                String s = scanner.nextLine();
                 break;
             case 3:
                 registration.logout();
                 break;
             case 4:
-                return 0;
+                System.exit(0);
             default: 
                 System.out.println("Wrong Choice, try again.");
                 this.doStudent();
@@ -113,7 +118,8 @@ public class CBTSoftware {
     public static void main(String[] args) {
         CBTSoftware cbt = new CBTSoftware();
         cbt.registration = new Registration();
-        
+        Introduction into = new Introduction();
+        into.displayInfo();
         int run = 1;
         while(run == 1) {
             if(!cbt.registration.loggedIn()) {
