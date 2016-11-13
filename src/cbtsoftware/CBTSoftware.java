@@ -38,8 +38,9 @@ public class CBTSoftware {
     public int doStudent() {
         System.out.println("----------------Student Menu--------------");
         System.out.println("1. Attent examination");
-        System.out.println("2. Logout");
-        System.out.println("3. Exit");
+        System.out.println("2. View results");
+        System.out.println("3. Logout");
+        System.out.println("4. Exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:   
@@ -50,9 +51,11 @@ public class CBTSoftware {
                 System.out.println(marks);
                 break;
             case 2:
-                registration.logout();
                 break;
             case 3:
+                registration.logout();
+                break;
+            case 4:
                 return 0;
             default: 
                 System.out.println("Wrong Choice, try again.");
