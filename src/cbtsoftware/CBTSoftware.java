@@ -69,7 +69,7 @@ public class CBTSoftware {
 
         TakeTest t = new TakeTest();
         t.setTest(1, 8, 20);
-        int marks = t.StartTest();
+        float marks = t.StartTest();
         System.out.println(marks);
     } 
     

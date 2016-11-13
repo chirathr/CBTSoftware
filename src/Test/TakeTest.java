@@ -6,6 +6,7 @@
 package Test;
 
 import Questions.Question;
+import java.util.Scanner;
 
 /**
  *
@@ -46,12 +47,17 @@ public class TakeTest {
         this.time = time;
     }
 
-    public int StartTest() {
+    public float StartTest() {
         question = new Question();
-        int marks = 0;
+        float marks = 0;
+        System.out.println("---------------------------------------------------------");
         for(int i = startId, j = 1; i <= endId; ++i, j++) {
             question.load(i);
             question.print(j);
+            System.out.print("   ->");
+            String ans = new Scanner(System.in).nextLine();
+            marks += question.checkAnswer(ans);
+            System.out.println("---------------------------------------------------------");
         }
         return marks;
     }

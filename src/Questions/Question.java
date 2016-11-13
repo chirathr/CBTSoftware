@@ -232,4 +232,31 @@ public class Question {
             System.out.println("\n  Fill in the blanks");
         }
     }
+    
+    public float checkAnswer(String ans) {
+        if(type == 1) {
+            int answer = Integer.parseInt(ans);
+            if(answer == mcqAnswer)
+                return (float)mark;
+            return 0;
+        }
+        else if(type == 2) {
+            
+        }
+        else if( type == 3) {
+            char answer = 'F';
+            if(trueOrFalseAnswer) {
+                answer = 'T';
+            }
+            if(ans.charAt(0) == answer)
+                return (float)mark;
+            return 0;
+        }
+        else {
+            if(ans.equals(fillInTheBlankAnswer))
+                return (float)mark;
+            return 0;
+        }
+        return 0;
+    }
 }
