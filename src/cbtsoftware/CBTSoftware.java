@@ -88,6 +88,7 @@ public class CBTSoftware {
                 aq.addQuestions(teacher.getId());
                 break;
             case 3:
+                registration.teacherRegister();
                 break;
             case 4:
                 break;
