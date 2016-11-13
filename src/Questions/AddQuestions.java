@@ -54,4 +54,23 @@ public class AddQuestions {
                 this.getMacqAnswer());
         question.save();
     }
+    
+    public boolean getTrueOrFalseAns() {
+        System.out.print("Enter answer(T or F) :");
+        char c = scanner.nextLine().charAt(0);
+        if(c == 'T' || c == 't')
+            return true;
+        else if(c == 'F' || c == 'f')
+            return false;
+        return this.getTrueOrFalseAns();
+    }
+    
+    public void addTrueOrFalse() {
+        question = new Question();
+        question.setTrueOrFalse(
+                this.getQuestion(), 
+                this.getTrueOrFalseAns(), 
+                this.getMacqAnswer());
+        question.save();
+    }
 }
