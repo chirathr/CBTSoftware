@@ -67,7 +67,7 @@ public class CBTSoftware {
 //            cbt.doTeacher();
 //
           Question q = new Question();
-          q.load(11);
+          q.load(8);
           q.print(1);
     } 
     

@@ -214,8 +214,19 @@ public class Question {
                 System.out.print(i+1);
                 System.out.print(". " + options[i]);
             }
-            System.out.println("\n  Enter your answer(1 - " + 
+            if(type == 1) {
+                System.out.println("\n  Enter single answer(1 - " + 
                     Integer.toString(numberOfChoices) + ")");
+            }
+            else {
+                System.out.println("\n  Enter multiple answers(1 - " + 
+                    Integer.toString(numberOfChoices) + ")");
+            }
+        }
+        else if(type == 3) {
+            System.out.println("\n  T. True");
+            System.out.println("  F. False");
+            System.out.println("  Enter (T or F)?");
         }
     }
 }
