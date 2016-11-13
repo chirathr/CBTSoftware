@@ -198,7 +198,10 @@ public class Question {
         }
     }
     
-    public void setAll() {
+    public void setAll(int type,int numberOfChoices,int mcqA,int mark,String question,String[] options,boolean torf,String fillblanks) {
+        this.type=type;
+        this.numberOfChoices=numberOfchoices;
+        this.;
         //Create a function similar to above that takes all the fields except id and assign it to variables.
         // no need to use db
         //just inizialize all viables with parameters from read file
