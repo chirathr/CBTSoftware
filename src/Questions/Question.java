@@ -203,4 +203,19 @@ public class Question {
         // no need to use db
         //just inizialize all viables with parameters from read file
     }
+    
+    public void print(int number) {
+        System.out.print(number + ". ");
+        System.out.print(question + "    " + Integer.toString(mark) + " marks");
+        if(type == 1 || type == 2) {
+            for(int i = 0; i < numberOfChoices; ++i) {
+                System.out.println();
+                System.out.print("  ");
+                System.out.print(i+1);
+                System.out.print(". " + options[i]);
+            }
+            System.out.println("\n  Enter your answer(1 - " + 
+                    Integer.toString(numberOfChoices) + ")");
+        }
+    }
 }

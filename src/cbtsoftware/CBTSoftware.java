@@ -59,14 +59,16 @@ public class CBTSoftware {
     }
 
     public static void main(String[] args) {
-        CBTSoftware cbt = new CBTSoftware();
-        cbt.logInUser();
-        if(cbt.userType == 'S')
-            cbt.doStudent();
-        else 
-            cbt.doTeacher();
-
-        Question q = new Question();
+//        CBTSoftware cbt = new CBTSoftware();
+//        cbt.logInUser();
+//        if(cbt.userType == 'S')
+//            cbt.doStudent();
+//        else 
+//            cbt.doTeacher();
+//
+          Question q = new Question();
+          q.load(11);
+          q.print(1);
     } 
     
 }
