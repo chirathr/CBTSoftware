@@ -44,7 +44,19 @@ public class Exam {
     }
     
     public void saveExamination(int qId) {
-        
+        try {
+            List<List<String>> result;
+            PSQLConnect psql = new PSQLConnect();
+            String query = "select max(id) from examination;";
+            psql.connectPSQL();
+            result = psql.runPSQLQuery(query);
+            int nextId = Integer.parseInt(result.get(0).get(0) + 1);
+            query = "insert into examination values(" + nextId + ", " + teacherId + ";";
+            psql.connectPSQL();
+            psql.insertQuery(query);
+        } catch (SQLException ex) {
+            System.out.println("PSQL Server error");
+        }
     }
     
     public void addQuestion() {
