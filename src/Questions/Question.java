@@ -111,13 +111,14 @@ public class Question {
         this.mark = mark;
     }
     
-    public void setMCQMultiple(String q, int nofc, String options[],int mark) {
+    public void setMCQMultiple(String q, int nofc, String options[],int mcqAnswer, int mark) {
         //mcq(multiple answers)
         this.type = 2;
         this.question = q;
         this.numberOfChoices = nofc;
         this.options = options;
         this.mark = mark;
+        this.mcqAnswer = mcqAnswer;
     }
     public void setTrueOrFalse(String q, boolean torF, int mark) {
         // True or False

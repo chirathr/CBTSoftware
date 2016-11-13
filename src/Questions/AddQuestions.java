@@ -5,10 +5,53 @@
  */
 package Questions;
 
+import java.util.Scanner;
+
 /**
  *
  * @author chirath
  */
 public class AddQuestions {
+    Question question = null;
+    Scanner scanner = new Scanner(System.in);
     
+    public int getNumberofChoices() {
+        System.out.print("Enter number of choices :");
+        return scanner.nextInt();
+    }
+    
+    public String getQuestion() {
+        System.out.print("Enter Question :");
+        return scanner.nextLine();
+    }
+    
+    public String[] getOptions() {
+        String[] str = new String[5];
+        System.out.print("Enter 5 choices :");
+        for(int i = 0; i < 5; ++i) {
+            str[i] = scanner.nextLine();
+        }
+        return str;
+    }
+    
+    public int getMacqAnswer() {
+        System.out.print("Enter answer(1-5) :");
+        return scanner.nextInt()-1;
+    }
+    
+    public int getMark() {
+        System.out.print("Enter mark :");
+        return scanner.nextInt();
+    }
+    
+    public void addMCQSingle() {
+        question = new Question();
+        question.setMCQSingle(
+                this.getQuestion(), 
+                this.getNumberofChoices(), 
+                this.getOptions(),
+                this.getMacqAnswer(), 
+                this.getMacqAnswer());
+        question.save();
+    }
 }
