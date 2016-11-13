@@ -196,4 +196,8 @@ public class Question {
             System.out.println("Question not found in DB");
         }
     }
+    
+    public void setAll() {
+        //Create a function similar to above that takes all the fields except id and assign it to variables.
+    }
 }
