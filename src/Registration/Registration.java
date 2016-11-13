@@ -212,6 +212,12 @@ public class Registration {
         student = null;
     }
     
+    public boolean loggedIn() {
+        if(teacher != null || student != null)
+            return true;
+        return false;
+    }
+    
     public void loginUser() {
         System.out.println("----------------Login or Register--------------");
         System.out.println("1 to login");

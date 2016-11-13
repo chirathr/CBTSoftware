@@ -20,7 +20,6 @@ public class CBTSoftware {
     char userType;
     
     public void logInUser() {
-        registration = new Registration();
         registration.loginUser();
         userType = registration.teacherOrStudent();
         if(userType == 'T')
@@ -35,11 +34,11 @@ public class CBTSoftware {
         scanner = new Scanner(System.in);
     }
     
-    public void doStudent() {
+    public int doStudent() {
         System.out.println("----------------Student Menu--------------");
-        System.out.println("1 for student");
-        System.out.println("2 for teacher");
-        System.out.println("3 to go back");
+        System.out.println("1. attent examination");
+        System.out.println("2. logout");
+        System.out.println("3. exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:   
@@ -48,17 +47,21 @@ public class CBTSoftware {
                 t.setTest(1, 8, 1);
                 float marks = t.StartTest();
                 System.out.println(marks);
-                
                 break;
             case 2:
-                AddQuestions aq = new AddQuestions();
-                aq.addQuestions();
+                registration.logout();
                 break;
+            case 3:
+                return 0;
+            default: 
+                System.out.println("Wrong Choice, try again.");
+                this.doStudent();
         }
+        return 1;
     }
     
-    public void doTeacher() {
-        System.out.println("----------------Staff Menu--------------");
+    public int doTeacher() {
+        System.out.println("----------------Faculty Menu--------------");
         System.out.println("1 for student");
         System.out.println("2 to add question");
         System.out.println("3 to go back");
@@ -70,16 +73,26 @@ public class CBTSoftware {
                 AddQuestions aq = new AddQuestions();
                 aq.addQuestions();
                 break;
+            default: 
+                System.out.println("Wrong Choice, try again.");
+                this.doTeacher();
         }
-    }
+        return 1;    }
 
     public static void main(String[] args) {
         CBTSoftware cbt = new CBTSoftware();
-        cbt.logInUser();
-        if(cbt.userType == 'S')
-            cbt.doStudent();
-        else 
-            cbt.doTeacher();
+        cbt.registration = new Registration();
+        
+        int run = 1;
+        while(run == 1) {
+            if(!cbt.registration.loggedIn()) {
+                cbt.logInUser();
+            }
+            if(cbt.userType == 'S')
+                run = cbt.doStudent();
+            else 
+                run = cbt.doTeacher();
+        }
     } 
     
 }
