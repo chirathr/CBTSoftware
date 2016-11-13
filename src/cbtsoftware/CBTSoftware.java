@@ -54,8 +54,8 @@ public class CBTSoftware {
             case 2:
                 AddQuestions aq = new AddQuestions();
                 aq.addQuestions();
+                break;
         }
-        int choice = scanner.nextInt();
     }
 
     public static void main(String[] args) {

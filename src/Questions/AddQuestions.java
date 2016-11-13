@@ -14,10 +14,12 @@ import java.util.Scanner;
 public class AddQuestions {
     Question question = null;
     Scanner scanner = new Scanner(System.in);
+    int nOfC;
     
     public int getNumberofChoices() {
         System.out.print("Enter number of choices :");
-        return scanner.nextInt();
+        nOfC = scanner.nextInt();
+        return nOfC;
     }
     
     public String getQuestion() {
@@ -27,14 +29,15 @@ public class AddQuestions {
     
     public String[] getOptions() {
         String[] str = new String[5];
-        System.out.print("Enter 5 choices :");
-        for(int i = 0; i < 5; ++i) {
+        System.out.print("Enter " + nOfC + " choices :");
+        str[0] = scanner.nextLine();
+        for(int i = 0; i < nOfC; ++i) {
             str[i] = scanner.nextLine();
         }
         return str;
     }
     
-    public int getMacqAnswer() {
+    public int getMcqAnswer() {
         System.out.print("Enter answer(1-5) :");
         return scanner.nextInt()-1;
     }
@@ -50,13 +53,14 @@ public class AddQuestions {
         int n = scanner.nextInt();
         for(int i = 0; i < n; ++i) {
             System.out.println("Enter question " + i+1);
+            String temp = scanner.nextLine();
             question = new Question();
             question.setMCQSingle(
                     this.getQuestion(), 
                     this.getNumberofChoices(), 
                     this.getOptions(),
-                    this.getMacqAnswer(), 
-                    this.getMacqAnswer());
+                    this.getMcqAnswer(), 
+                    this.getMark());
             question.save();
         }  
     }
@@ -77,11 +81,12 @@ public class AddQuestions {
         int n = scanner.nextInt();
         for(int i = 0; i < n; ++i) {
             System.out.println("Enter question " + i+1);
+            String temp = scanner.nextLine();
             question = new Question();
             question.setTrueOrFalse(
                     this.getQuestion(), 
                     this.getTrueOrFalseAns(), 
-                    this.getMacqAnswer());
+                    this.getMark());
             question.save();
         }        
     }
@@ -97,11 +102,12 @@ public class AddQuestions {
         int n = scanner.nextInt();
         for(int i = 0; i < n; ++i) {
             System.out.println("Enter question " + i+1);
+            String temp = scanner.nextLine();
             question = new Question();
             question.setFillInTheBlank(
                     this.getQuestion(), 
                     this.getFillInTheBlankAns(), 
-                    this.getMacqAnswer());
+                    this.getMark());
             question.save();
         }
     }
@@ -116,7 +122,7 @@ public class AddQuestions {
         int ch = scanner.nextInt();
         switch(ch) {
             case 1: addMCQSingle();
-            break;
+            return;
             case 2: addMCQSingle();
             break;
             case 3: addTrueOrFalse();
