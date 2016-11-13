@@ -73,4 +73,18 @@ public class AddQuestions {
                 this.getMacqAnswer());
         question.save();
     }
+    
+    public String getFillInTheBlankAns() {
+        System.out.print("Enter answer :");
+        return scanner.nextLine();
+    }
+    
+    public void addFillInTheBlanks() {
+        question = new Question();
+        question.setFillInTheBlank(
+                this.getQuestion(), 
+                this.getFillInTheBlankAns(), 
+                this.getMacqAnswer());
+        question.save();
+    }
 }
