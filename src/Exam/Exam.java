@@ -5,8 +5,13 @@
  */
 package Exam;
 
+import Dbconnection.PSQLConnect;
 import Questions.Question;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +24,22 @@ public class Exam {
     int time;
     String examName, dateOfExam;
     float totalMark;
+    
+    public void save() {
+        try {
+            List<List<String>> result;
+            PSQLConnect psql = new PSQLConnect();
+            String query = "select max(id) from exam;";
+            psql.connectPSQL();
+            result = psql.runPSQLQuery(query);
+            int nextId = Integer.parseInt(result.get(0).get(0) + 1);
+            query = "insert into exam values(1, 'online exam 1', '13-11-2016', 1, 60, 20);";
+            psql.connectPSQL();
+            psql.insertQuery(query);
+        } catch (SQLException ex) {
+            System.out.println("PSQL Server error");
+        }
+    }
     
     public void selectQuestions() {
         Question question = new Question();
