@@ -20,7 +20,7 @@ public class CBTSoftware {
     char userType;
     
     public void logInUser() {
-        registration.loginUser();
+        registration.login();
         userType = registration.teacherOrStudent();
         if(userType == 'T')
             teacher = registration.getTeacher();
@@ -74,8 +74,10 @@ public class CBTSoftware {
         System.out.println("----------------Faculty Menu--------------");
         System.out.println("1. Add a student");
         System.out.println("2. Add questions");
-        System.out.println("3. Logout");
-        System.out.println("4. Exit");
+        System.out.println("3. Add faculty");
+        System.out.println("4. Add Test");
+        System.out.println("5. Logout");
+        System.out.println("6. Exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:
@@ -86,9 +88,13 @@ public class CBTSoftware {
                 aq.addQuestions(teacher.getId());
                 break;
             case 3:
-                registration.logout();
                 break;
             case 4:
+                break;
+            case 5:
+                registration.logout();
+                break;
+            case 6:
                 return 0;
             default: 
                 System.out.println("Wrong Choice, try again.");

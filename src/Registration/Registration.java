@@ -158,6 +158,7 @@ public class Registration {
             System.out.println("Enter again !!");
             this.teacherRegister();
         }
+        teacher = null;
     }
     
     public int register() {
@@ -212,9 +213,9 @@ public class Registration {
     public int login() {
         scanner = new Scanner(System.in);
         System.out.println("----------------Login--------------");
-        System.out.println("1 for student");
-        System.out.println("2 for teacher");
-        System.out.println("3 to go back");
+        System.out.println("1. Student");
+        System.out.println("2. Faculty");
+        System.out.println("3. Exit");
         int type = scanner.nextInt();
         if(type == 1) {
             if(this.studentLogin() == 0) {
@@ -231,7 +232,7 @@ public class Registration {
             return 1;
         }
         else if(type == 3) 
-            return 0;
+            System.exit(0);
         else {
             System.out.println("Wrong option, Enter again !");
             this.register();
@@ -263,26 +264,5 @@ public class Registration {
         if(teacher != null || student != null)
             return true;
         return false;
-    }
-    
-    public void loginUser() {
-        System.out.println("----------------Login or Register--------------");
-        System.out.println("1 to login");
-        System.out.println("2 signUp");
-        System.out.println("3 to exit");
-        scanner = new Scanner(System.in);
-        int type = scanner.nextInt();
-        if(type == 1) {
-            type = this.login();
-        }
-        else if(type == 2) {
-            type = this.register();
-        }
-        else if(type == 3) 
-            System.exit(0);
-        else {
-            System.out.println("Wrong option, Enter again !");
-            this.register();
-        }
     }
 }
