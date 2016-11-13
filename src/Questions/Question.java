@@ -212,10 +212,24 @@ public class Question {
         }
     }
     
-    public void setAll(int type,int numberOfChoices,int mcqA,int mark,String question,String[] options,boolean torf,String fillblanks) {
+    public void setAll(int type,int numberOfChoices,String[] options,
+            String question,String mcqAnswer,boolean torf,
+            String fillblanks,int mark,int tid
+    ) {
         this.type=type;
-        this.numberOfChoices=numberOfchoices;
-        this.;
+        this.numberOfChoices=numberOfChoices;
+        this.mark=mark;
+        this.question=question;
+        this.mcqAnswers=mcqAnswer;
+        this.options=options;
+        this.trueOrFalseAnswer=torf;
+        this.fillInTheBlankAnswer=fillblanks;
+                /*int id, type, numberOfChoices, mark;
+    String question, mcqAnswers;
+    String[] options = new String[5];
+    boolean trueOrFalseAnswer = true;
+    String fillInTheBlankAnswer;
+    int teacherId;*/
         //Create a function similar to above that takes all the fields except id and assign it to variables.
         // no need to use db
         //just inizialize all viables with parameters from read file
