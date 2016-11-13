@@ -3,6 +3,7 @@ package cbtsoftware;
 import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
+import Test.TakeTest;
 import User.Student;
 import User.Teacher;
 import java.util.Scanner;
@@ -66,9 +67,10 @@ public class CBTSoftware {
 //        else 
 //            cbt.doTeacher();
 
-          Question q = new Question();
-          q.load(10);
-          q.print(1);
+        TakeTest t = new TakeTest();
+        t.setTest(1, 8, 20);
+        int marks = t.StartTest();
+        System.out.println(marks);
     } 
     
 }
