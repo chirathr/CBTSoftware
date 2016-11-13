@@ -43,6 +43,35 @@ public class Exam {
         }
     }
     
+    public void saveExamination(int qId) {
+        
+    }
+    
+    public void addQuestion() {
+        try {
+            List<List<String>> result;
+            PSQLConnect psql = new PSQLConnect();
+            String query = "select max(id) from question;";
+            psql.connectPSQL();
+            result = psql.runPSQLQuery(query);
+            int startId = Integer.parseInt(result.get(0).get(0) + 1);
+            
+            question.getQuestion();
+            
+            query = "select max(id) from question;";
+            psql.connectPSQL();
+            result = psql.runPSQLQuery(query);
+            int endId = Integer.parseInt(result.get(0).get(0));
+            
+            for(int i = startId; i <= endId; ++i) {
+                this.saveExamination(i);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Exam.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void selectQuestions() {
         Question question = new Question();
         System.out.print("\n----------Questions------------");
@@ -50,7 +79,7 @@ public class Exam {
         System.out.print("\n2. Select from existing questions");
         int choice = scanner.nextInt();
         if(choice == 1) {
-            question.getQuestion();
+            
         }
         else if(choice == 2) {
             
