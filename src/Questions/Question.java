@@ -228,5 +228,8 @@ public class Question {
             System.out.println("  F. False");
             System.out.println("  Enter (T or F)?");
         }
+        else {
+            System.out.println("\n  Fill in the blanks");
+        }
     }
 }
