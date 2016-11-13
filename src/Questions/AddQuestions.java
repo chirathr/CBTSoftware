@@ -67,6 +67,31 @@ public class AddQuestions {
         }  
     }
     
+    public String getMcqAnswers() {
+        System.out.print("Enter answers seperated by comma(,) :");
+        return scanner.nextLine();
+    }
+    
+    public void addMCQMultiple(int tId) {
+        System.out.println("----------------MCQ single--------------");
+        System.out.println("Number of question?");
+        int n = scanner.nextInt();
+        for(int i = 0; i < n; ++i) {
+            System.out.println("Enter question " + i+1);
+            String temp = scanner.nextLine();
+            question = new Question();
+            question.setMCQSingle(
+                    this.getQuestion(), 
+                    this.getNumberofChoices(), 
+                    this.getOptions(),
+                    this.getMcqAnswers(), 
+                    this.getMark(),
+                    tId
+            );
+            question.save();
+        }  
+    }
+    
     public boolean getTrueOrFalseAns() {
         System.out.print("Enter answer(T or F) :");
         char c = scanner.nextLine().charAt(0);
