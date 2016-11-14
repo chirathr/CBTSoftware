@@ -1,6 +1,7 @@
 package cbtsoftware;
 
 import Exam.Exam;
+import Intro.Introduction;
 import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
@@ -117,7 +118,8 @@ public class CBTSoftware {
     public static void main(String[] args) {
         CBTSoftware cbt = new CBTSoftware();
         cbt.registration = new Registration();
-        
+        Introduction into = new Introduction();
+        into.displayInfo();
         int run = 1;
         while(run == 1) {
             if(!cbt.registration.loggedIn()) {
