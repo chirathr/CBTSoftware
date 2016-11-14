@@ -68,7 +68,7 @@ public class TakeTest {
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             for(int i = 0; i < result.size(); ++i) {
-                System.out.print(result.get(i).get(0) + ". " + 
+                System.out.print("\n" + result.get(i).get(0) + ". " + 
                         result.get(i).get(1) + "\t" + result.get(i).get(2) + 
                         "\t" + result.get(i).get(4));
             }
@@ -88,11 +88,11 @@ public class TakeTest {
         System.out.println("----------------------Examination----------------------");
         long startTime = (System.nanoTime() / 1000000000)/60;
         try {
-            String query = "select * from examination where exam id = " + examId + ";";
+            String query = "select * from examination where examid = " + examId + ";";
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             for(int i = 0, j =1; i < result.size(); ++i, j++) {
-                long currentTime = (System.nanoTime() / 1000000000)/60;
+            long currentTime = (System.nanoTime() / 1000000000)/60;
             System.out.print("\t\t\t\t    ");
             System.out.print((int)(time - (currentTime - startTime))/60);
             System.out.print(" hrs, ");
@@ -103,7 +103,7 @@ public class TakeTest {
                 System.out.println("\n-----------------------------Time up---------------------------");
                 break;
             }
-            question.load(i);
+            question.load(Integer.parseInt(result.get(i).get(1)));
             question.print(j);
             System.out.print("   ->");
             String ans = new Scanner(System.in).nextLine();
@@ -113,6 +113,9 @@ public class TakeTest {
         } catch (SQLException ex) {
            System.out.println("Error in Db connect");
         }
+        
+        
+        
         return marks;
     }
 }

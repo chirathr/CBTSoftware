@@ -3,12 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mark;
+package Result;
 
 /**
  *
  * @author chirath
  */
-public class Mark {
+public class Result {
+    PSQLConnect psql = null;
     
+    public void setResult() {
+        
+    }
+    
+    public void save() {
+    
+    }
 }

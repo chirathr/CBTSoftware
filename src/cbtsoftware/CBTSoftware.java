@@ -56,7 +56,7 @@ public class CBTSoftware {
                 registration.logout();
                 break;
             case 4:
-                return 0;
+                System.exit(0);
             default: 
                 System.out.println("Wrong Choice, try again.");
                 this.doStudent();
