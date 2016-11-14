@@ -25,6 +25,7 @@ public class Exam {
     String examName, dateOfExam;
     float totalMark;
     
+    
     public void save() {
         try {
             List<List<String>> result;

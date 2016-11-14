@@ -46,7 +46,7 @@ public class CBTSoftware {
             case 1:   
                 
                 TakeTest t = new TakeTest();
-                t.setTest(1, 8, 1);
+                t.setTest(1, 8, 10);
                 float marks = t.StartTest();
                 System.out.println(marks);
                 break;
