@@ -4,6 +4,7 @@ import Exam.Exam;
 import Questions.AddQuestions;
 import Questions.Question;
 import Registration.Registration;
+import Result.Result;
 import Test.TakeTest;
 import User.Student;
 import User.Teacher;
@@ -47,10 +48,13 @@ public class CBTSoftware {
                 
                 TakeTest t = new TakeTest();
                 t.setTest(1, 8, 10);
-                float marks = t.StartTest();
-                System.out.println(marks);
+                t.StartTest(student.getId());
                 break;
             case 2:
+                System.out.println("----------------Results Menu--------------");
+                Result r = new Result();
+                r.displayAll(student.getId());
+                String s = scanner.nextLine();
                 break;
             case 3:
                 registration.logout();
