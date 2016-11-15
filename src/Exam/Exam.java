@@ -81,22 +81,22 @@ public class Exam {
         }
     }
     
-    public void showQuestions() {
+    public void showQuestions(int tId) {
         try {
             question = new Question();
             
             List<List<String>> result;
             PSQLConnect psql = new PSQLConnect();
-            String query = "select max(id) from question;";
+            String query = "select * from question where teacherId = " + tId + ";";
             psql.connectPSQL();
             result = psql.runPSQLQuery(query);
             int endId = Integer.parseInt(result.get(0).get(0));
             
             System.out.println("--------------------All question-------------------");
             
-            for(int i = 1; i <= endId; ++i) {
-                question.load(i);
-                question.print(i);
+            for(int i = 0; i < result.size(); ++i) {
+                question.load(Integer.parseInt(result.get(i).get(0)));
+                question.print(i+1);
             }
             
             System.out.println("Enter number of question");
@@ -127,7 +127,7 @@ public class Exam {
             this.addQuestion(tId);
         }
         else if(choice == 2) {
-            this.showQuestions();
+            this.showQuestions(tId);
         }
         else {
             System.out.print("\nWrong choice, enter again");
