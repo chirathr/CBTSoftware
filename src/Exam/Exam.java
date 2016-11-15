@@ -48,7 +48,7 @@ public class Exam {
     public void saveExamination(int qId) {
         List<List<String>> result;
         PSQLConnect psql = new PSQLConnect();
-        String query = "insert into examination values(" + qId + ", " + teacherId + ");";
+        String query = "insert into examination values(" + id + ", " + qId + ");";
         psql.connectPSQL();
         psql.insertQuery(query);
     }

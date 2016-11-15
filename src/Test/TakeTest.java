@@ -122,7 +122,7 @@ public class TakeTest {
                         break;
                     }
                     
-                    question.load(Integer.parseInt(results.get(i).get(0)));
+                    question.load(Integer.parseInt(results.get(i).get(1)));
                     question.print(j);
                     System.out.print("   ->");
                     String ans = new Scanner(System.in).nextLine();
