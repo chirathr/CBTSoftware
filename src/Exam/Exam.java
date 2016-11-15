@@ -48,7 +48,7 @@ public class Exam {
     public void saveExamination(int qId) {
         List<List<String>> result;
         PSQLConnect psql = new PSQLConnect();
-        String query = "insert into examination values(" + id + ", " + teacherId + ");";
+        String query = "insert into examination values(" + qId + ", " + teacherId + ");";
         psql.connectPSQL();
         psql.insertQuery(query);
     }
@@ -104,7 +104,7 @@ public class Exam {
             System.out.println("Enter question number for exam in order");
             for(int i = 0; i < n; ++i) {
                 int number = scanner.nextInt();
-                saveExamination(number);
+                this.saveExamination(number);
             }
             
             
