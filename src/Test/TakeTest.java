@@ -79,7 +79,18 @@ public class TakeTest {
         } catch (SQLException ex) {
            System.out.println("Error in Db connect");
         }
+        
+        String query = "select * from exam where id = " + selectedId + ";";
+        psql.connectPSQL();
+        try {
+            results = psql.runPSQLQuery(query);
+        } catch (SQLException ex) {
+            System.out.println("Db error in exam, take test");
+        }
+        time = Integer.parseInt(results.get(0).get(4));
         return selectedId;
+        
+        
     }
 
     public void StartTest(int sId) {
@@ -93,6 +104,11 @@ public class TakeTest {
                 String query = "select * from examination where examid = " + examId + ";";
                 psql.connectPSQL();
                 results = psql.runPSQLQuery(query);
+                
+                
+                
+                question = new Question();
+                System.out.println(results.size());
                 for(int i = 0, j =1; i < results.size(); ++i, j++) {
                     long currentTime = (System.nanoTime() / 1000000000)/60;
                     System.out.print("\t\t\t\t    ");
@@ -105,6 +121,7 @@ public class TakeTest {
                         System.out.println("\n-----------------------------Time up---------------------------");
                         break;
                     }
+                    
                     question.load(Integer.parseInt(results.get(i).get(1)));
                     question.print(j);
                     System.out.print("   ->");

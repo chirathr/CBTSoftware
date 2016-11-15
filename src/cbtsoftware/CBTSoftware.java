@@ -48,8 +48,8 @@ public class CBTSoftware {
             case 1:   
                 
                 TakeTest t = new TakeTest();
-                t.setTest(1, 8, 10);
                 t.StartTest(student.getId());
+                
                 break;
             case 2:
                 System.out.println("----------------Results Menu--------------");
