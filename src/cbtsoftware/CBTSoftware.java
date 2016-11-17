@@ -11,10 +11,6 @@ import User.Student;
 import User.Teacher;
 import java.util.Scanner;
 
-/**
- *
- * @author chirath
- */
 public class CBTSoftware {
     Scanner scanner = null;
     Student student = null;

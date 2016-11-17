@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Questions;
 
 import Dbconnection.PSQLConnect;
@@ -12,10 +7,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author chirath
- */
 public class Question {
     List<List<String>> result = null;
     PSQLConnect psql = null;
