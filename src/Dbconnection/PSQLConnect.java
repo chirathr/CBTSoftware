@@ -52,29 +52,29 @@ public class PSQLConnect {
 	}
     }
     
-    public  List<List<String>> runPSQLQuery(String query) throws SQLException {
-        Statement st = connection.createStatement();
-        ResultSet rs = null;
+    public  List<List<String>> runPSQLQuery(String query) {
         try {
+            Statement st = connection.createStatement();
+            ResultSet rs = null;
             rs = st.executeQuery(query);
+            List<List<String>> result = new ArrayList<>();  // List of list, one per row
+            int numcols = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                List<String> row = new ArrayList<>(numcols); // new list per row
+                int i = 1;
+                while (i <= numcols) {  // don't skip the last column, use <=
+                    row.add(rs.getString(i++));
+                }
+                result.add(row); // add it to the result
+            }
+            
+            rs.close();
+            st.close();
+            connection.close();
+            return result;
         } catch (SQLException ex) {
             Logger.getLogger(PSQLConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<List<String>> result = new ArrayList<>();  // List of list, one per row
-        int numcols = rs.getMetaData().getColumnCount();
-        while (rs.next()) {
-            List<String> row = new ArrayList<>(numcols); // new list per row
-            int i = 1;
-            while (i <= numcols) {  // don't skip the last column, use <=
-                row.add(rs.getString(i++));
-            }
-            result.add(row); // add it to the result
-        }
-        
-        rs.close();
-        st.close();
-        connection.close();
-        return result;
     }
     
     public void insertQuery(String query) {
