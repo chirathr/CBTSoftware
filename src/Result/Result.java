@@ -20,6 +20,18 @@ public class Result {
         this.total = total;
     }
     
+    public void displayAll() {
+        String query = "select * from result;";
+        psql = new PSQLConnect();
+        psql.connectPSQL();
+        List<List<String>> result;
+        result = psql.runPSQLQuery(query);
+        for(int i =0 ; i < result.size(); ++i) {
+            System.out.println(result.get(i).get(1) + "\t" + result.get(i).get(3) + "/" + result.get(i).get(4));
+        }
+        String s = new Scanner(System.in).nextLine();
+    } 
+    
     public void save() {
         PSQLConnect psql = new PSQLConnect();
         String query = "insert into result values(" + studentId + ", '" + 
@@ -33,13 +45,9 @@ public class Result {
         psql = new PSQLConnect();
         psql.connectPSQL();
         List<List<String>> result;
-        try {
-            result = psql.runPSQLQuery(query);
-            for(int i =0 ; i < result.size(); ++i) {
-                System.out.println(result.get(i).get(1) + "\t" + result.get(i).get(3) + "/" + result.get(i).get(4));
-            }
-        } catch (SQLException ex) {
-            System.out.println("Question not found in DB");
+        result = psql.runPSQLQuery(query);
+        for(int i =0 ; i < result.size(); ++i) {
+            System.out.println(result.get(i).get(1) + "\t" + result.get(i).get(3) + "/" + result.get(i).get(4));
         }
         String s = new Scanner(System.in).nextLine();
     }

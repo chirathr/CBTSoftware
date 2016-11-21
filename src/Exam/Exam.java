@@ -20,21 +20,17 @@ public class Exam {
     
     
     public void save() {
-        try {
-            List<List<String>> result;
-            PSQLConnect psql = new PSQLConnect();
-            String query = "select max(id) from exam;";
-            psql.connectPSQL();
-            result = psql.runPSQLQuery(query);
-            id = Integer.parseInt(result.get(0).get(0)) + 1;
-            query = "insert into exam values(" + id + ", '" + examName + 
-                    "', '" + dateOfExam + "'," + teacherId + ", " + 
-                    time + ", " + totalMark + ");";
-            psql.connectPSQL();
-            psql.insertQuery(query);
-        } catch (SQLException ex) {
-            System.out.println("PSQL Server error");
-        }
+        List<List<String>> result;
+        PSQLConnect psql = new PSQLConnect();
+        String query = "select max(id) from exam;";
+        psql.connectPSQL();
+        result = psql.runPSQLQuery(query);
+        id = Integer.parseInt(result.get(0).get(0)) + 1;
+        query = "insert into exam values(" + id + ", '" + examName +
+                "', '" + dateOfExam + "'," + teacherId + ", " +
+                time + ", " + totalMark + ");";
+        psql.connectPSQL();
+        psql.insertQuery(query);
     }
     
     public void saveExamination(int qId) {
@@ -46,63 +42,46 @@ public class Exam {
     }
     
     public void addQuestion(int tId) {
-        try {
-            List<List<String>> result;
-            PSQLConnect psql = new PSQLConnect();
-            String query = "select max(id) from question;";
-            psql.connectPSQL();
-            result = psql.runPSQLQuery(query);
-            int startId = Integer.parseInt(result.get(0).get(0) + 1);
-            String s = scanner.nextLine();
-            System.out.println("How many Questions?");
-            int n = scanner.nextInt();
-            AddQuestions addQ = new AddQuestions();
-            for(int i=0; i < n; ++i)
-                addQ.addQuestions(tId);
-            query = "select max(id) from question;";
-            psql.connectPSQL();
-            result = psql.runPSQLQuery(query);
-            int endId = Integer.parseInt(result.get(0).get(0));
-            
-            for(int i = startId; i <= endId; ++i) {
-                this.saveExamination(i);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Exam.class.getName()).log(Level.SEVERE, null, ex);
+        List<List<String>> result;
+        PSQLConnect psql = new PSQLConnect();
+        String query = "select max(id) from question;";
+        psql.connectPSQL();
+        result = psql.runPSQLQuery(query);
+        int startId = Integer.parseInt(result.get(0).get(0) + 1);
+        String s = scanner.nextLine();
+        System.out.println("How many Questions?");
+        int n = scanner.nextInt();
+        AddQuestions addQ = new AddQuestions();
+        for(int i=0; i < n; ++i)
+            addQ.addQuestions(tId);
+        query = "select max(id) from question;";
+        psql.connectPSQL();
+        result = psql.runPSQLQuery(query);
+        int endId = Integer.parseInt(result.get(0).get(0));
+        for(int i = startId; i <= endId; ++i) {
+            this.saveExamination(i);
         }
     }
     
     public void showQuestions(int tId) {
-        try {
-            question = new Question();
-            
-            List<List<String>> result;
-            PSQLConnect psql = new PSQLConnect();
-            String query = "select * from question where teacherId = " + tId + ";";
-            psql.connectPSQL();
-            result = psql.runPSQLQuery(query);
-            int endId = Integer.parseInt(result.get(0).get(0));
-            
-            System.out.println("--------------------All question-------------------");
-            
-            for(int i = 0; i < result.size(); ++i) {
-                question.load(Integer.parseInt(result.get(i).get(0)));
-                question.print(i+1);
-            }
-            
-            System.out.println("Enter number of question");
-            int n = scanner.nextInt();
-            System.out.println("Enter question number for exam in order");
-            for(int i = 0; i < n; ++i) {
-                int number = scanner.nextInt();
-                this.saveExamination(number);
-            }
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Exam.class.getName()).log(Level.SEVERE, null, ex);
+        question = new Question();
+        List<List<String>> result;
+        PSQLConnect psql = new PSQLConnect();
+        String query = "select * from question where teacherId = " + tId + ";";
+        psql.connectPSQL();
+        result = psql.runPSQLQuery(query);
+        int endId = Integer.parseInt(result.get(0).get(0));
+        System.out.println("--------------------All question-------------------");
+        for(int i = 0; i < result.size(); ++i) {
+            question.load(Integer.parseInt(result.get(i).get(0)));
+            question.print(i+1);
+        }
+        System.out.println("Enter number of question");
+        int n = scanner.nextInt();
+        System.out.println("Enter question number for exam in order");
+        for(int i = 0; i < n; ++i) {
+            int number = scanner.nextInt();
+            this.saveExamination(number);
         }
         
     }

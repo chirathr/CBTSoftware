@@ -81,8 +81,9 @@ public class CBTSoftware {
         System.out.println("2. Add questions");
         System.out.println("3. Add faculty");
         System.out.println("4. Add Test");
-        System.out.println("5. Logout");
-        System.out.println("6. Exit");
+        System.out.println("5. Student results");
+        System.out.println("6. Logout");
+        System.out.println("7. Exit");
         int ch = scanner.nextInt();
         switch(ch) {
             case 1:
@@ -100,9 +101,13 @@ public class CBTSoftware {
                 e.addExam(teacher.getId());
                 break;
             case 5:
-                registration.logout();
+                Result r = new Result();
+                r.displayAll();
                 break;
             case 6:
+                registration.logout();
+                break;
+            case 7:
                 return 0;
             default: 
                 System.out.println("Wrong Choice, try again.");

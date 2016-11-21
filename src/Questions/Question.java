@@ -180,27 +180,23 @@ public class Question {
         String query = "select * from question where id = "+ id +";";
         psql = new PSQLConnect();
         psql.connectPSQL();
-        try {
-            result = psql.runPSQLQuery(query);
-            type = Integer.parseInt(result.get(0).get(1));
-            numberOfChoices = Integer.parseInt(result.get(0).get(2));
-            options[0] = result.get(0).get(3);
-            options[1] = result.get(0).get(4);
-            options[2] = result.get(0).get(5);
-            options[3] = result.get(0).get(6);
-            options[4] = result.get(0).get(7);
-            question = result.get(0).get(8);
-            mcqAnswers = result.get(0).get(9);
-            if(Integer.parseInt(result.get(0).get(10)) == 1)
-                trueOrFalseAnswer = true;
-            else
-                trueOrFalseAnswer = false;
-            fillInTheBlankAnswer = result.get(0).get(11);
-            mark = Integer.parseInt(result.get(0).get(12));
-            teacherId = Integer.parseInt(result.get(0).get(13));
-        } catch (SQLException ex) {
-            System.out.println("Question not found in DB");
-        }
+        result = psql.runPSQLQuery(query);
+        type = Integer.parseInt(result.get(0).get(1));
+        numberOfChoices = Integer.parseInt(result.get(0).get(2));
+        options[0] = result.get(0).get(3);
+        options[1] = result.get(0).get(4);
+        options[2] = result.get(0).get(5);
+        options[3] = result.get(0).get(6);
+        options[4] = result.get(0).get(7);
+        question = result.get(0).get(8);
+        mcqAnswers = result.get(0).get(9);
+        if(Integer.parseInt(result.get(0).get(10)) == 1)
+            trueOrFalseAnswer = true;
+        else
+            trueOrFalseAnswer = false;
+        fillInTheBlankAnswer = result.get(0).get(11);
+        mark = Integer.parseInt(result.get(0).get(12));
+        teacherId = Integer.parseInt(result.get(0).get(13));
     }
     
     public void setAll(int type,int numberOfChoices,String[] options,

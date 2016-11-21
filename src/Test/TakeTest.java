@@ -55,29 +55,20 @@ public class TakeTest {
         psql = new PSQLConnect();
         int selectedId = 0;
         System.out.print("-----------------------Online Exam----------------------");
-        try {
-            String query = "select * from exam;";
-            psql.connectPSQL();
-            results = psql.runPSQLQuery(query);
-            for(int i = 0; i < results.size(); ++i) {
-                System.out.print("\n" + results.get(i).get(0) + ". " + 
-                        results.get(i).get(1) + "\t" + results.get(i).get(2) + 
-                        "\t" + results.get(i).get(4));
-            }
-            System.out.print("\n\nEnter your choice : ");
-            selectedId = scanner.nextInt();
-            
-        } catch (SQLException ex) {
-           System.out.println("Error in Db connect");
-        }
-        
-        String query = "select * from exam where id = " + selectedId + ";";
+        String query = "select * from exam;";
         psql.connectPSQL();
-        try {
-            results = psql.runPSQLQuery(query);
-        } catch (SQLException ex) {
-            System.out.println("Db error in exam, take test");
+        results = psql.runPSQLQuery(query);
+        for(int i = 0; i < results.size(); ++i) {
+            System.out.print("\n" + results.get(i).get(0) + ". " +
+                    results.get(i).get(1) + "\t" + results.get(i).get(2) +
+                    "\t" + results.get(i).get(4));
         }
+        System.out.print("\n\nEnter your choice : ");
+        selectedId = scanner.nextInt();
+        
+        query = "select * from exam where id = " + selectedId + ";";
+        psql.connectPSQL();
+        results = psql.runPSQLQuery(query);
         time = Integer.parseInt(results.get(0).get(4));
         return selectedId;
         
@@ -88,56 +79,41 @@ public class TakeTest {
         question = new Question();
         float marks = 0, total = 0;
         int examId = this.selectExam();
-        try {
-            System.out.println("----------------------Examination----------------------");
-            long startTime = (System.nanoTime() / 1000000000)/60;
-            try {
-                String query = "select * from examination where examid = " + examId + ";";
-                psql.connectPSQL();
-                results = psql.runPSQLQuery(query);
-                
-                
-                
-                question = new Question();
-                System.out.println(results.size());
-                for(int i = 0, j =1; i < results.size(); ++i, j++) {
-                    long currentTime = (System.nanoTime() / 1000000000)/60;
-                    System.out.print("\t\t\t\t    ");
-                    System.out.print((int)(time - (currentTime - startTime))/60);
-                    System.out.print(" hrs, ");
-                    System.out.print((int)(time - (currentTime - startTime))%60);
-                    
-                    System.out.print(" mins remaining\n");
-                    if((time - (currentTime - startTime)) < 1) {
-                        System.out.println("\n-----------------------------Time up---------------------------");
-                        break;
-                    }
-                    
-                    question.load(Integer.parseInt(results.get(i).get(1)));
-                    question.print(j);
-                    System.out.print("   ->");
-                    String ans = new Scanner(System.in).nextLine();
-                    total += question.getMark();
-                    marks += question.checkAnswer(ans);
-                    System.out.println("------------------------------------------------------------");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Error in Db connect");
+        System.out.println("----------------------Examination----------------------");
+        long startTime = (System.nanoTime() / 1000000000)/60;
+        String query = "select * from examination where examid = " + examId + ";";
+        psql.connectPSQL();
+        results = psql.runPSQLQuery(query);
+        question = new Question();
+        System.out.println(results.size());
+        for(int i = 0, j =1; i < results.size(); ++i, j++) {
+            long currentTime = (System.nanoTime() / 1000000000)/60;
+            System.out.print("\t\t\t\t    ");
+            System.out.print((int)(time - (currentTime - startTime))/60);
+            System.out.print(" hrs, ");
+            System.out.print((int)(time - (currentTime - startTime))%60);
+            
+            System.out.print(" mins remaining\n");
+            if((time - (currentTime - startTime)) < 1) {
+                System.out.println("\n-----------------------------Time up---------------------------");
+                break;
             }
             
-            Result result = new Result();
-            String query = "select * from exam where id = " + examId + ";";
-            psql.connectPSQL();
-            results = psql.runPSQLQuery(query);
-            int nextId = 0;
-            
-            
-            result.setResult(sId, examId, results.get(0).get(1), marks, total);
-            result.save();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(TakeTest.class.getName()).log(Level.SEVERE, null, ex);
+            question.load(Integer.parseInt(results.get(i).get(1)));
+            question.print(j);
+            System.out.print("   ->");
+            String ans = new Scanner(System.in).nextLine();
+            total += question.getMark();
+            marks += question.checkAnswer(ans);
+            System.out.println("------------------------------------------------------------");
         }
+        Result result = new Result();
+        query = "select * from exam where id = " + examId + ";";
+        psql.connectPSQL();
+        results = psql.runPSQLQuery(query);
+        int nextId = 0;
+        result.setResult(sId, examId, results.get(0).get(1), marks, total);
+        result.save();
         System.out.println("-----------------------Test complete-----------------------");
         System.out.print("\nResult : ");
         System.out.print(marks);
