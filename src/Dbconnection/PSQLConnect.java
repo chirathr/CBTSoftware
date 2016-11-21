@@ -53,11 +53,12 @@ public class PSQLConnect {
     }
     
     public  List<List<String>> runPSQLQuery(String query) {
+        List<List<String>> result = new ArrayList<>();  // List of list, one per row
         try {
             Statement st = connection.createStatement();
             ResultSet rs = null;
             rs = st.executeQuery(query);
-            List<List<String>> result = new ArrayList<>();  // List of list, one per row
+            
             int numcols = rs.getMetaData().getColumnCount();
             while (rs.next()) {
                 List<String> row = new ArrayList<>(numcols); // new list per row
@@ -71,10 +72,11 @@ public class PSQLConnect {
             rs.close();
             st.close();
             connection.close();
-            return result;
+            
         } catch (SQLException ex) {
             Logger.getLogger(PSQLConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
     
     public void insertQuery(String query) {

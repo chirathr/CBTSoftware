@@ -152,26 +152,28 @@ public class Registration {
         teacher = null;
     }
     
-    public int register() {
+    public void adminMenu() {
         scanner = new Scanner(System.in);
-        System.out.println("----------------Register--------------");
-        System.out.println("1 for student");
-        System.out.println("2 for teacher");
-        System.out.println("3 to go back");
-        int type = scanner.nextInt();
-        if(type == 1) {
-            this.studentRegister();
+        while(true) {
+            System.out.println("--------------------Admin--------------------");
+            System.out.println("1 Add student");
+            System.out.println("2 Add faculty");
+            System.out.println("3 Exit");
+            int type = scanner.nextInt();
+            if(type == 1) {
+                this.studentRegister();
+                student = null;
+            }
+            else if(type == 2) {
+                this.teacherRegister();
+                teacher = null;
+            }
+            else if(type == 3) 
+                break;
+            else {
+                System.out.println("Wrong option, Enter again !");
+            }
         }
-        else if(type == 2) {
-            this.teacherRegister();
-        }
-        else if(type == 3) 
-            return 0;
-        else {
-            System.out.println("Wrong option, Enter again !");
-            this.register();
-        }
-        return 1;
     }
     
     public int studentLogin() {
@@ -206,7 +208,8 @@ public class Registration {
         System.out.println("----------------Login--------------");
         System.out.println("1. Student");
         System.out.println("2. Faculty");
-        System.out.println("3. Exit");
+        System.out.println("3. Admin");
+        System.out.println("4. Exit");
         int type = scanner.nextInt();
         if(type == 1) {
             if(this.studentLogin() == 0) {
@@ -222,11 +225,14 @@ public class Registration {
             }
             return 1;
         }
-        else if(type == 3) 
+        else if(type == 3) {
+            this.adminMenu();
+        }
+        else if(type == 4)
             System.exit(0);
         else {
             System.out.println("Wrong option, Enter again !");
-            this.register();
+            this.login();
         }
         return 1;
     }
