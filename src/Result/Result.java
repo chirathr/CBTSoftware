@@ -26,7 +26,12 @@ public class Result {
         List<List<String>> result;
         result = psql.runPSQLQuery(query);
         for(int i =0 ; i < result.size(); ++i) {
-            System.out.println(result.get(i).get(1) + "\t" + result.get(i).get(3) + "/" + result.get(i).get(4));
+            query = "select * from student where id = " + result.get(i).get(0) + ";";
+            psql = new PSQLConnect();
+            psql.connectPSQL();
+            List<List<String>> rs;
+            rs = psql.runPSQLQuery(query);
+            System.out.println(rs.get(0).get(1) + "\t" + result.get(i).get(1) + "\t" + result.get(i).get(3) + "/" + result.get(i).get(4));
         }
         String s = new Scanner(System.in).nextLine();
     } 
