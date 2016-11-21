@@ -1,10 +1,7 @@
 package User;
 
 import Dbconnection.PSQLConnect;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Teacher extends Person {
     String department; 

@@ -3,7 +3,6 @@ package cbtsoftware;
 import Exam.Exam;
 import Intro.Introduction;
 import Questions.AddQuestions;
-import Questions.Question;
 import Registration.Registration;
 import Result.Result;
 import Test.TakeTest;
@@ -21,12 +20,17 @@ public class CBTSoftware {
     public void logInUser() {
         registration.login();
         userType = registration.teacherOrStudent();
-        if(userType == 'T')
-            teacher = registration.getTeacher();
-        else if(userType == 'S')
-            student = registration.getStudent();
-        else 
-            this.logInUser();
+        switch (userType) {
+            case 'T':
+                teacher = registration.getTeacher();
+                break;
+            case 'S':
+                student = registration.getStudent();
+                break;
+            default:
+                this.logInUser();
+                break;
+        }
     }
     
     CBTSoftware() {
@@ -34,7 +38,7 @@ public class CBTSoftware {
     }
     
     public int doStudent() {
-        System.out.println("----------------Student Menu--------------");
+        System.out.println("----------------------------------Student Menu------------------------------------");
         System.out.println("1. Attent examination");
         System.out.println("2. View results");
         System.out.println("3. Logout");
@@ -48,7 +52,7 @@ public class CBTSoftware {
                 
                 break;
             case 2:
-                System.out.println("----------------Results Menu--------------");
+                System.out.println("--------------------------------Results Menu---------------------------------");
                 Result r = new Result();
                 r.displayAll(student.getId());
                 String s = scanner.nextLine();

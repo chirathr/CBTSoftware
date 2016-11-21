@@ -4,11 +4,8 @@ import Dbconnection.PSQLConnect;
 import Exam.Exam;
 import Questions.Question;
 import Result.Result;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TakeTest {
     Question question = null;

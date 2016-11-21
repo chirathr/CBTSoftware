@@ -1,11 +1,8 @@
 package Questions;
 
 import Dbconnection.PSQLConnect;
-import User.Student;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Question {
     List<List<String>> result = null;

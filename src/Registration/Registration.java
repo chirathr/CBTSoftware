@@ -1,7 +1,6 @@
 package Registration;
 
 import java.util.*;
-import java.io.*;
 import User.Student;
 import User.Teacher;
 import java.util.regex.Matcher;

@@ -1,5 +1,4 @@
 package User;
-import Dbconnection.PSQLConnect;
 
 public class Person implements User{
     int id;

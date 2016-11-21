@@ -3,11 +3,8 @@ package Exam;
 import Dbconnection.PSQLConnect;
 import Questions.AddQuestions;
 import Questions.Question;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Exam {

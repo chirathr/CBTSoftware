@@ -9,7 +9,7 @@ public class Introduction {
         System.out.println("*********************************************************************************************************");
         System.out.println("                                     Computer Based Testing Software");
         System.out.println("*********************************************************************************************************");
-        System.out.println(" \n \n \n \n \n \n \n \t\t\t\t\tYour Test Will Begin Shortly\n \n \n \n \nThis sofware has been developed using Atom text-editor.\nDeveloped by Chirath and Vishnu.\nNo part of this code may be reproduced or copied without the express permissions of the administrators");
+        System.out.println(" \n \n \n \n \n \n \n \t\t\t\t\tYour Test Will Begin Shortly\n \n \n \n \nThis sofware has been developed using Sublime Text editor.\nDeveloped by Chirath and Vishnu.\nNo part of this code may be reproduced or copied without the express permissions of the administrators");
         System.out.println("Hit return to continue");
         String s=new Scanner(System.in).nextLine();
     }
