@@ -153,8 +153,22 @@ public class Registration {
     
     public void adminMenu() {
         scanner = new Scanner(System.in);
+        String username = "";
+        String password = "";
         while(true) {
-            System.out.println("--------------------Admin--------------------");
+            System.out.print("username : ");
+            username = scanner.nextLine();
+            System.out.print("password : ");
+            password = scanner.nextLine();
+            if(username.equals("admin") && password.equals(password)) {
+                System.out.println("Login sucessful!");
+                break;
+            }
+            else 
+                System.out.println("Username or password wrong! Try again.");
+        }
+        while(true) {
+            System.out.println("-------------------------------------Admin------------------------------------");
             System.out.println("1 Add student");
             System.out.println("2 Add faculty");
             System.out.println("3 Exit");
